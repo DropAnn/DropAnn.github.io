@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sysmon | Hexo</title><meta name="keywords" content="主机安全 安全事件监控 windows安全"><meta name="author" content="John Doe"><meta name="copyright" content="John Doe"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="概述应用打开或任何进程创建行为发生时，Sysmon 会使用 sha1（默认），MD5，SHA256 或 IMPHASH 记录进程镜像文件的 hash 值，包含进程创建过程中的进程 GUID，每个事件中包含 session 的 GUID。除此之外记录磁盘和卷的读取请求 &#x2F; 网络连接（包括每个连接的源进程，IP 地址，端口号，主机名和端口名），重要的是还可在生成初期进程事件能记录在复杂的内核模式运行的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sysmon">
+<meta property="og:url" content="http://example.com/2021/08/19/Sysmon%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="概述应用打开或任何进程创建行为发生时，Sysmon 会使用 sha1（默认），MD5，SHA256 或 IMPHASH 记录进程镜像文件的 hash 值，包含进程创建过程中的进程 GUID，每个事件中包含 session 的 GUID。除此之外记录磁盘和卷的读取请求 &#x2F; 网络连接（包括每个连接的源进程，IP 地址，端口号，主机名和端口名），重要的是还可在生成初期进程事件能记录在复杂的内核模式运行的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-08-18T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-19T15:24:37.855Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="主机安全 安全事件监控 windows安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/19/Sysmon%E4%BD%BF%E7%94%A8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Sysmon',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-19 23:24:37'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Sysmon</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-08-18T16:00:00.000Z" title="Created 2021-08-19 00:00:00">2021-08-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-08-19T15:24:37.855Z" title="Updated 2021-08-19 23:24:37">2021-08-19</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Sysmon"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>应用打开或任何进程创建行为发生时，Sysmon 会使用 sha1（默认），MD5，SHA256 或 IMPHASH 记录进程镜像文件的 hash 值，包含进程创建过程中的进程 GUID，每个事件中包含 session 的 GUID。除此之外记录磁盘和卷的读取请求 / 网络连接（包括每个连接的源进程，IP 地址，端口号，主机名和端口名），重要的是还可在生成初期进程事件能记录在复杂的内核模式运行的恶意软件。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon">https://docs.microsoft.com/en-us/sysinternals/downloads/sysmon</a></p>
+<span id="more"></span>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="命令行安装"><a href="#命令行安装" class="headerlink" title="命令行安装"></a>命令行安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sysmon64.exe -i </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1625708523188-47e47d6c-9c47-4069-af2d-7fba84c60d13.png" alt="img"></p>
+<p>靶机中会出现<code>error getting the evt dll (wevtapi.dll): 87</code>报错</p>
+<p><strong>原因：</strong></p>
+<p>没有打系统补丁导致安装失败，一共需要两个补丁，分别是<code>KB2533623</code>和<code>KB3033929</code></p>
+<p>KB2533623：主要解决不安全的库加载可能允许远程执行代码问题。</p>
+<p>KB3033929：微软计划在2017年1月1日全部停用不安全的SHA-1哈希算法的代码签名证书，升级为SHA-2算法的代码签名证书。</p>
+<p><strong>参考链接：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ElsonHY/article/details/113098588">https://blog.csdn.net/ElsonHY/article/details/113098588</a></p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1625710997718-ec61c173-c72b-4484-bf0c-00f512d3d5c4.png" alt="img"></p>
+<h3 id="配置文件安装"><a href="#配置文件安装" class="headerlink" title="配置文件安装"></a>配置文件安装</h3><p><strong>配置文件：</strong><a target="_blank" rel="noopener" href="https://github.com/SwiftOnSecurity/sysmon-config">https://github.com/SwiftOnSecurity/sysmon-config</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sysmon64 -accepteula -i sysmonconfig-export.xml</span><br><span class="line">## 更新规则</span><br><span class="line">Sysmon64 -c sysmonconfig-export.xml</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sysmon卸载"><a href="#Sysmon卸载" class="headerlink" title="Sysmon卸载"></a>Sysmon卸载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 通过以下方式对Sysmon进行卸载操作</span><br><span class="line">Sysmon64.exe -u</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志通过事件查看器查看"><a href="#日志通过事件查看器查看" class="headerlink" title="日志通过事件查看器查看"></a>日志通过事件查看器查看</h2><p>控制面板&gt;管理工具&gt;事件查看器&gt;应用程序和服务日志&gt;microsoft&gt;Windows&gt;Sysmon&gt;Operations</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1625710972672-7f15696f-fb71-4a76-bfd5-31e852f1be5d.png" alt="img"></p>
+<p>sysmon日志是以evtx格式存储</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eventvwr.msc</span><br></pre></td></tr></table></figure>
+
+<h2 id="绕过Sysmon"><a href="#绕过Sysmon" class="headerlink" title="绕过Sysmon"></a>绕过Sysmon</h2><ol>
+<li>管理员权限CMD执行<code>fltMC.exe upload SysmonDrv</code>直接卸载</li>
+<li>删除Sysmon规则</li>
+<li>停止Sysmon驱动</li>
+<li>结束Sysmon日志句柄的对应进程可间接停止Windows EventLog服务</li>
+<li>使用<code>Mimikatz</code>中<code>Event::Drop</code>使日志服务暂停，对<code>wevtsvc.dll</code>链接库劫持</li>
+<li>使用工具<code>gitl.exe</code> <a target="_blank" rel="noopener" href="https://github.com/bats3c/Ghost-In-The-Logs">https://github.com/bats3c/Ghost-In-The-Logs</a></li>
+</ol>
+<h2 id="事件ID"><a href="#事件ID" class="headerlink" title="事件ID"></a>事件ID</h2><p>应用程序和服务日志-Microsoft-Windows-Sysmon-Operational</p>
+<p>如同Windows自带的系统日志，安全日志有事件ID一样，sysmon日志也有对应的事件ID，最新版本支持24种事件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Event ID 1: Process creation</span><br><span class="line">Event ID 2: A process changed a file creation time</span><br><span class="line">Event ID 3: Network connection</span><br><span class="line">Event ID 4: Sysmon service state changed</span><br><span class="line">Event ID 5: Process terminated</span><br><span class="line">Event ID 6: Driver loaded</span><br><span class="line">Event ID 7: Image loaded</span><br><span class="line">Event ID 8: CreateRemoteThread</span><br><span class="line">Event ID 9: RawAccessRead</span><br><span class="line">Event ID 10: ProcessAccess</span><br><span class="line">Event ID 11: FileCreate</span><br><span class="line">Event ID 12: RegistryEvent (Object create and delete)</span><br><span class="line">Event ID 13: RegistryEvent (Value Set)</span><br><span class="line">Event ID 14: RegistryEvent (Key and Value Rename)</span><br><span class="line">Event ID 15: FileCreateStreamHash</span><br><span class="line">Event ID 17: PipeEvent (Pipe Created)</span><br><span class="line">Event ID 18: PipeEvent (Pipe Connected)</span><br><span class="line">Event ID 19: WmiEvent (WmiEventFilter activity detected)</span><br><span class="line">Event ID 20: WmiEvent (WmiEventConsumer activity detected)</span><br><span class="line">Event ID 21: WmiEvent (WmiEventConsumerToFilter activity detected)</span><br><span class="line">Event ID 22: DNSEvent (DNS query)</span><br><span class="line">Event ID 23: FileDelete</span><br><span class="line">Event ID 24: Clipboard Changed</span><br><span class="line">Event ID 255: Error</span><br></pre></td></tr></table></figure>
+
+<h3 id="事件ID-1：进程创建"><a href="#事件ID-1：进程创建" class="headerlink" title="事件ID 1：进程创建"></a>事件ID 1：进程创建</h3><p>进程创建事件ID，恶意进程的创建，包括他的父进程，PID，执行命令及对应文件所在目录记录信息等等。</p>
+<p> <img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1628216029205-ccdb2c51-961d-4d87-9f24-385d058967fe.png" alt="img"></p>
+<h3 id="事件ID-2：一个进程更改了文件创建时间"><a href="#事件ID-2：一个进程更改了文件创建时间" class="headerlink" title="事件ID 2：一个进程更改了文件创建时间"></a>事件ID 2：一个进程更改了文件创建时间</h3><p>当进程显式修改文件创建时间时，将注册更改文件创建时间事件。此事件有助于跟踪文件的实际创建时间。攻击者可能会更改后门的文件创建时间，以使其看起来像与操作系统一起安装。请注意，许多进程会合理地更改文件的创建时间。它不一定表示恶意活动。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210819155544123.png" alt="image-20210819155544123"></p>
+<h3 id="事件ID-3：网络连接"><a href="#事件ID-3：网络连接" class="headerlink" title="事件ID 3：网络连接"></a>事件ID 3：网络连接</h3><p>网络连接事件ID，当恶意程序外连CC服务器或者矿地址池等操作的时候，可监控到是哪个进程发起的连接，并找到对应程序所在目录进行清理操作。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1628214591104-b38a7d58-ceea-410e-a357-c4a0e52ca4e5.png" alt="img"></p>
+<h3 id="事件ID-4：Sysmon服务状态已更改"><a href="#事件ID-4：Sysmon服务状态已更改" class="headerlink" title="事件ID 4：Sysmon服务状态已更改"></a>事件ID 4：Sysmon服务状态已更改</h3><p>服务状态更改事件报告Sysmon服务的状态（已启动或已停止）。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210819160033476.png" alt="image-20210819160033476"></p>
+<h3 id="事件ID-5：进程终止"><a href="#事件ID-5：进程终止" class="headerlink" title="事件ID 5：进程终止"></a>事件ID 5：进程终止</h3><p>进程终止时报告进程终止事件。它提供了进程的UtcTime，ProcessGuid和ProcessId。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210819160619377.png" alt="image-20210819160619377"></p>
+<h3 id="事件ID-6：驱动程序已加载"><a href="#事件ID-6：驱动程序已加载" class="headerlink" title="事件ID 6：驱动程序已加载"></a>事件ID 6：驱动程序已加载</h3><p>驱动程序加载事件提供有关在系统上加载驱动程序的信息。提供配置的哈希值以及签名信息。出于性能原因，签名是异步创建的，并指示在加载后是否删除了文件。</p>
+<h3 id="事件ID-7：图像已加载"><a href="#事件ID-7：图像已加载" class="headerlink" title="事件ID 7：图像已加载"></a>事件ID 7：图像已加载</h3><p>图像加载事件记录在特定过程中加载模块的时间。默认情况下，此事件是禁用的，需要使用–l选项进行配置。它指示模块的加载过程，哈希和签名信息。出于性能原因，签名是异步创建的，并指示在加载后是否删除了文件。应仔细配置此事件，因为监视所有图像加载事件将生成大量事件。</p>
+<h3 id="事件ID-8：CreateRemoteThread"><a href="#事件ID-8：CreateRemoteThread" class="headerlink" title="事件ID 8：CreateRemoteThread"></a>事件ID 8：CreateRemoteThread</h3><p>CreateRemoteThread事件检测<strong>一个进程何时在另一个进程中创建线程</strong>。恶意软件使用此技术来注入代码并隐藏在其他进程中。该事件指示源和目标进程。它提供了有关将在新线程中运行的代码的信息：StartAddress，StartModule和StartFunction。请注意，将推断StartModule和StartFunction字段，如果起始地址在已加载的模块或已知的导出函数之外，则它们可能为空。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210819161830698.png" alt="image-20210819161830698"></p>
+<h3 id="事件ID-9：RawAccessad"><a href="#事件ID-9：RawAccessad" class="headerlink" title="事件ID 9：RawAccessad"></a>事件ID 9：RawAccessad</h3><p>RawAccessad事件检测进程何时使用。表示从驱动器进行读取操作。恶意软件通常使用此技术来对已锁定以供读取的文件进行数据泄漏，并避免使用文件访问审核工具。该事件指示源进程和目标设备。</p>
+<h3 id="事件ID-10：ProcessAccess"><a href="#事件ID-10：ProcessAccess" class="headerlink" title="事件ID 10：ProcessAccess"></a>事件ID 10：ProcessAccess</h3><p>当一个进程打开另一个进程时，该进程访问事件报告，该操作通常伴随着信息查询或读写目标进程的地址空间。这样可以检测黑客工具，这些工具读取诸如本地安全机构（Lsass.exe）之类的进程的内存内容，以窃取凭据以用于“哈希传递”攻击。如果存在活动的诊断实用程序，这些实用程序会反复打开进程以查询其状态，则启用它可能会产生大量的日志记录，因此通常只应使用删除预期访问的过滤器来启用它。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210819162041174.png" alt="image-20210819162041174"></p>
+<h3 id="事件ID-11：文件创建"><a href="#事件ID-11：文件创建" class="headerlink" title="事件ID 11：文件创建"></a>事件ID 11：文件创建</h3><p>文件创建事件ID，创建或覆盖文件时，这些创建操作会被记录下来。此事件对于监控自动启动位置，如启动文件夹目录、临时目录、下载目录非常有用，而这些目录正是初始感染阶段恶意运行要用到的目录。</p>
+<h3 id="事件ID-12：RegistryEvent（对象创建和删除）"><a href="#事件ID-12：RegistryEvent（对象创建和删除）" class="headerlink" title="事件ID 12：RegistryEvent（对象创建和删除）"></a>事件ID 12：RegistryEvent（对象创建和删除）</h3><p>注册表项和值的创建和删除操作映射到此事件类型，这对于监视注册表自动启动位置的更改或特定的恶意软件注册表修改很有用。</p>
+<p>Sysmon使用注册表根键名的缩写版本，具有以下映射：</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1628217813479-7ad9be1b-59eb-4fdb-9f7b-46373a2f297c.png" alt="img"></p>
+<h3 id="事件ID-13：RegistryEvent（值集）"><a href="#事件ID-13：RegistryEvent（值集）" class="headerlink" title="事件ID 13：RegistryEvent（值集）"></a>事件ID 13：RegistryEvent（值集）</h3><p>此注册表事件类型标识注册表值修改。该事件记录为DWORD和QWORD类型的注册表值写入的值。</p>
+<h3 id="事件ID-14：RegistryEvent（键和值重命名）"><a href="#事件ID-14：RegistryEvent（键和值重命名）" class="headerlink" title="事件ID 14：RegistryEvent（键和值重命名）"></a>事件ID 14：RegistryEvent（键和值重命名）</h3><p>注册表键和值重命名操作映射到此事件类型，记录重命名的键或值的新名称。</p>
+<h3 id="事件ID-15"><a href="#事件ID-15" class="headerlink" title="事件ID 15"></a>事件ID 15</h3><p>此事件在创建命名文件流时记录，并生成事件，该事件记录该流所分配到的文件内容（未命名流）以及命名流的内容的哈希。有一些恶意软件变体会通过下载浏览器来删除其可执行文件或配置设置，并且该事件旨在基于基于附加了 <code>Zone.Identifier</code> 网络标记”流的浏览器来捕获它们。</p>
+<h3 id="事件ID-16：ServiceConfigurationChange"><a href="#事件ID-16：ServiceConfigurationChange" class="headerlink" title="事件ID 16：ServiceConfigurationChange"></a>事件ID 16：ServiceConfigurationChange</h3><p>此事件记录Sysmon配置中的更改-例如，更新过滤规则时。</p>
+<h3 id="事件ID-17：PipeEvent（已创建管道）"><a href="#事件ID-17：PipeEvent（已创建管道）" class="headerlink" title="事件ID 17：PipeEvent（已创建管道）"></a>事件ID 17：PipeEvent（已创建管道）</h3><p>创建命名管道时，将生成此事件。恶意软件通常使用命名管道进行进程间通信。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210819163221080.png" alt="image-20210819163221080"></p>
+<h3 id="事件ID-18：PipeEvent（已连接管道）"><a href="#事件ID-18：PipeEvent（已连接管道）" class="headerlink" title="事件ID 18：PipeEvent（已连接管道）"></a>事件ID 18：PipeEvent（已连接管道）</h3><p>在客户端和服务器之间建立命名管道连接时，将记录此事件。</p>
+<h3 id="事件ID-19：WmiEvent（检测到WmiEventFilter活动）"><a href="#事件ID-19：WmiEvent（检测到WmiEventFilter活动）" class="headerlink" title="事件ID 19：WmiEvent（检测到WmiEventFilter活动）"></a>事件ID 19：WmiEvent（检测到WmiEventFilter活动）</h3><p>注册WMI事件筛选器（恶意软件执行该方法）后，此事件将记录WMI名称空间，筛选器名称和筛选器表达式。</p>
+<h3 id="事件ID-20：WmiEvent（检测到WmiEventConsumer活动）"><a href="#事件ID-20：WmiEvent（检测到WmiEventConsumer活动）" class="headerlink" title="事件ID 20：WmiEvent（检测到WmiEventConsumer活动）"></a>事件ID 20：WmiEvent（检测到WmiEventConsumer活动）</h3><p>此事件记录WMI使用者的注册，记录使用者名称，日志和目的地。</p>
+<h3 id="事件ID-21：WmiEvent（检测到WmiEventConsumerToFilter活动）"><a href="#事件ID-21：WmiEvent（检测到WmiEventConsumerToFilter活动）" class="headerlink" title="事件ID 21：WmiEvent（检测到WmiEventConsumerToFilter活动）"></a>事件ID 21：WmiEvent（检测到WmiEventConsumerToFilter活动）</h3><p>当使用者绑定到过滤器时，此事件记录使用者名称和过滤器路径。</p>
+<h3 id="事件ID22：DNS查询"><a href="#事件ID22：DNS查询" class="headerlink" title="事件ID22：DNS查询"></a>事件ID22：DNS查询</h3><p>记录DNS查询，容易受该功能影响的一种场景就是DNS的C2通信，其中大量请求会被记录下来。</p>
+<p>过滤Event ID 22，可以重点关注“DNS query”（DNS请求）事件。</p>
+<h3 id="事件ID23：检测到文件删除"><a href="#事件ID23：检测到文件删除" class="headerlink" title="事件ID23：检测到文件删除"></a>事件ID23：检测到文件删除</h3><p>文件删除记录</p>
+<h3 id="事件ID24"><a href="#事件ID24" class="headerlink" title="事件ID24"></a>事件ID24</h3><p>Sysmon版本在12之后多了一个事件 ID 24用于记录剪切板事件。</p>
+<h3 id="事件ID-255：错误"><a href="#事件ID-255：错误" class="headerlink" title="事件ID 255：错误"></a>事件ID 255：错误</h3><p>Sysmon中发生错误时，将生成此事件。如果系统负载沉重，某些任务无法执行，或者Sysmon服务中存在错误，则可能发生这种情况。您可以在Sysinternals论坛或Twitter（@markrussinovich）上报告任何错误。</p>
+<h2 id="Sysmon工具"><a href="#Sysmon工具" class="headerlink" title="Sysmon工具"></a>Sysmon工具</h2><p><a target="_blank" rel="noopener" href="https://github.com/nshalabi/SysmonTools.git">https://github.com/nshalabi/SysmonTools.git</a></p>
+<h3 id="Sysmon-View"><a href="#Sysmon-View" class="headerlink" title="Sysmon View"></a>Sysmon View</h3><p>Sysmon View是Sysmon产生日志的可视化查看进程信息的辅助工具。</p>
+<p>cmd下执行以下命令导出xml格式的日志文档，可通过Sysmon View辅助工具实现对其可视化显示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WEVTUtil query-events &quot;Microsoft-Windows-Sysmon/Operational&quot; /format:xml /e:sysmonview &gt; eventlog.xml</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1628229368340-011f11c7-d34f-4529-aa88-618842014feb.png" alt="img"></p>
+<p><strong>安全日志查询</strong></p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210819192109256.png" alt="image-20210819192109256"></p>
+<h3 id="sysmon-shell"><a href="#sysmon-shell" class="headerlink" title="sysmon shell"></a>sysmon shell</h3><p>通过简单的GUI界面帮助编写和应用Sysmon XML配置，需要导入配置文件。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1628230616204-b77c1243-a27d-4f42-a34e-71cb4f35bac1.png" alt="img"></p>
+<p>除了导出Sysmon事件日志外，Sysmon Shell还可以用于探索Sysmon可用的各种配置选项，轻松应用和更新XML配置。</p>
+<ol>
+<li><p>Sysmon Shell可以加载Sysmon XML配置文件：当前版本支持所有Sysmon架构。（该工具不直接从注册表加载任何配置，仅从XML文件加载）。</p>
+</li>
+<li><p>可以将最终的XML导出/保存到文件中。</p>
+</li>
+<li><p>可以通过Sysmon.exe -c command直接调用（在安装Sysmon的同一文件夹中创建临时XML文件）来应用生成的XML配置文件，因此，如果使用此功能，Sysmon Shell将需要提升的权限（需要继承此权限）从Sysmon进程本身），应用配置的输出将显示在预览平台中（这是Sysmon生成的输出）</p>
+</li>
+<li><p>可以在保存在预览窗格中之前预览XML配置</p>
+</li>
+<li><p>最后一个选项卡（标记为“Logs Export”）可能会很方便地将Sysmon事件日志快速导出到XML，以后可以使用“Sysmon View”进行事件分析，导出有三个选项：<img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210819185323827.png" alt="image-20210819185323827"></p>
+<p>*仅出口</p>
+<p>*导出并清除Sysmon事件日志</p>
+<p>*导出，备份evtx文件并清除事件日志</p>
+</li>
+</ol>
+<h2 id="使用案例"><a href="#使用案例" class="headerlink" title="使用案例"></a>使用案例</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># Sysmon实战分析Word恶意文件</span><br><span class="line">https://www.syspanda.com/index.php/2017/10/10/threat-hunting-sysmon-word-document-macro/</span><br><span class="line"># sysmon分析影子账户</span><br><span class="line">https://blog.51cto.com/u_14153008/2745323</span><br><span class="line"># sysmon学习文档</span><br><span class="line">https://github.com/MHaggis/sysmon-dfir</span><br><span class="line"># 使用Sysmon和Splunk探测网络环境中横向渗透</span><br><span class="line">https://cloud.tencent.com/developer/article/1041591</span><br><span class="line"># 微软轻量级系统监控工具sysmon原理与实现完全分析</span><br><span class="line">https://www.anquanke.com/post/id/156704</span><br><span class="line">Sysmon DNS查询</span><br><span class="line">https://www.anquanke.com/post/id/180418</span><br><span class="line">报错解决：</span><br><span class="line">https://superuser.com/questions/1482486/installation-error-of-sysmon-on-windows-7-vm-sysmondrv-driver-and-startservice</span><br><span class="line">辅助工具：</span><br><span class="line">https://www.yuque.com/p1ut0/xer98r/ugrtrf</span><br><span class="line">Sysmon官方文档</span><br><span class="line">https://docs.microsoft.com/zh-cn/sysinternals/downloads/sysmon</span><br></pre></td></tr></table></figure>
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">John Doe</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/19/Sysmon%E4%BD%BF%E7%94%A8/">http://example.com/2021/08/19/Sysmon%E4%BD%BF%E7%94%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E4%B8%BB%E6%9C%BA%E5%AE%89%E5%85%A8-%E5%AE%89%E5%85%A8%E4%BA%8B%E4%BB%B6%E7%9B%91%E6%8E%A7-windows%E5%AE%89%E5%85%A8/">主机安全 安全事件监控 windows安全</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/08/20/Nginx%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"><img class="prev-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Nginx</div></div></a></div><div class="next-post pull-right"><a href="/2021/08/15/MySQL%E6%B3%A8%E5%85%A5/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">MySQL注入</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">John Doe</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">命令行安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">配置文件安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sysmon%E5%8D%B8%E8%BD%BD"><span class="toc-number">2.3.</span> <span class="toc-text">Sysmon卸载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E9%80%9A%E8%BF%87%E4%BA%8B%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%99%A8%E6%9F%A5%E7%9C%8B"><span class="toc-number">3.</span> <span class="toc-text">日志通过事件查看器查看</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%95%E8%BF%87Sysmon"><span class="toc-number">4.</span> <span class="toc-text">绕过Sysmon</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID"><span class="toc-number">5.</span> <span class="toc-text">事件ID</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-1%EF%BC%9A%E8%BF%9B%E7%A8%8B%E5%88%9B%E5%BB%BA"><span class="toc-number">5.1.</span> <span class="toc-text">事件ID 1：进程创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-2%EF%BC%9A%E4%B8%80%E4%B8%AA%E8%BF%9B%E7%A8%8B%E6%9B%B4%E6%94%B9%E4%BA%86%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA%E6%97%B6%E9%97%B4"><span class="toc-number">5.2.</span> <span class="toc-text">事件ID 2：一个进程更改了文件创建时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-3%EF%BC%9A%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5"><span class="toc-number">5.3.</span> <span class="toc-text">事件ID 3：网络连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-4%EF%BC%9ASysmon%E6%9C%8D%E5%8A%A1%E7%8A%B6%E6%80%81%E5%B7%B2%E6%9B%B4%E6%94%B9"><span class="toc-number">5.4.</span> <span class="toc-text">事件ID 4：Sysmon服务状态已更改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-5%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%BB%88%E6%AD%A2"><span class="toc-number">5.5.</span> <span class="toc-text">事件ID 5：进程终止</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-6%EF%BC%9A%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F%E5%B7%B2%E5%8A%A0%E8%BD%BD"><span class="toc-number">5.6.</span> <span class="toc-text">事件ID 6：驱动程序已加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-7%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%B7%B2%E5%8A%A0%E8%BD%BD"><span class="toc-number">5.7.</span> <span class="toc-text">事件ID 7：图像已加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-8%EF%BC%9ACreateRemoteThread"><span class="toc-number">5.8.</span> <span class="toc-text">事件ID 8：CreateRemoteThread</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-9%EF%BC%9ARawAccessad"><span class="toc-number">5.9.</span> <span class="toc-text">事件ID 9：RawAccessad</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-10%EF%BC%9AProcessAccess"><span class="toc-number">5.10.</span> <span class="toc-text">事件ID 10：ProcessAccess</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-11%EF%BC%9A%E6%96%87%E4%BB%B6%E5%88%9B%E5%BB%BA"><span class="toc-number">5.11.</span> <span class="toc-text">事件ID 11：文件创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-12%EF%BC%9ARegistryEvent%EF%BC%88%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E5%92%8C%E5%88%A0%E9%99%A4%EF%BC%89"><span class="toc-number">5.12.</span> <span class="toc-text">事件ID 12：RegistryEvent（对象创建和删除）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-13%EF%BC%9ARegistryEvent%EF%BC%88%E5%80%BC%E9%9B%86%EF%BC%89"><span class="toc-number">5.13.</span> <span class="toc-text">事件ID 13：RegistryEvent（值集）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-14%EF%BC%9ARegistryEvent%EF%BC%88%E9%94%AE%E5%92%8C%E5%80%BC%E9%87%8D%E5%91%BD%E5%90%8D%EF%BC%89"><span class="toc-number">5.14.</span> <span class="toc-text">事件ID 14：RegistryEvent（键和值重命名）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-15"><span class="toc-number">5.15.</span> <span class="toc-text">事件ID 15</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-16%EF%BC%9AServiceConfigurationChange"><span class="toc-number">5.16.</span> <span class="toc-text">事件ID 16：ServiceConfigurationChange</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-17%EF%BC%9APipeEvent%EF%BC%88%E5%B7%B2%E5%88%9B%E5%BB%BA%E7%AE%A1%E9%81%93%EF%BC%89"><span class="toc-number">5.17.</span> <span class="toc-text">事件ID 17：PipeEvent（已创建管道）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-18%EF%BC%9APipeEvent%EF%BC%88%E5%B7%B2%E8%BF%9E%E6%8E%A5%E7%AE%A1%E9%81%93%EF%BC%89"><span class="toc-number">5.18.</span> <span class="toc-text">事件ID 18：PipeEvent（已连接管道）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-19%EF%BC%9AWmiEvent%EF%BC%88%E6%A3%80%E6%B5%8B%E5%88%B0WmiEventFilter%E6%B4%BB%E5%8A%A8%EF%BC%89"><span class="toc-number">5.19.</span> <span class="toc-text">事件ID 19：WmiEvent（检测到WmiEventFilter活动）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-20%EF%BC%9AWmiEvent%EF%BC%88%E6%A3%80%E6%B5%8B%E5%88%B0WmiEventConsumer%E6%B4%BB%E5%8A%A8%EF%BC%89"><span class="toc-number">5.20.</span> <span class="toc-text">事件ID 20：WmiEvent（检测到WmiEventConsumer活动）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-21%EF%BC%9AWmiEvent%EF%BC%88%E6%A3%80%E6%B5%8B%E5%88%B0WmiEventConsumerToFilter%E6%B4%BB%E5%8A%A8%EF%BC%89"><span class="toc-number">5.21.</span> <span class="toc-text">事件ID 21：WmiEvent（检测到WmiEventConsumerToFilter活动）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID22%EF%BC%9ADNS%E6%9F%A5%E8%AF%A2"><span class="toc-number">5.22.</span> <span class="toc-text">事件ID22：DNS查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID23%EF%BC%9A%E6%A3%80%E6%B5%8B%E5%88%B0%E6%96%87%E4%BB%B6%E5%88%A0%E9%99%A4"><span class="toc-number">5.23.</span> <span class="toc-text">事件ID23：检测到文件删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID24"><span class="toc-number">5.24.</span> <span class="toc-text">事件ID24</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6ID-255%EF%BC%9A%E9%94%99%E8%AF%AF"><span class="toc-number">5.25.</span> <span class="toc-text">事件ID 255：错误</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sysmon%E5%B7%A5%E5%85%B7"><span class="toc-number">6.</span> <span class="toc-text">Sysmon工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Sysmon-View"><span class="toc-number">6.1.</span> <span class="toc-text">Sysmon View</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sysmon-shell"><span class="toc-number">6.2.</span> <span class="toc-text">sysmon shell</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%A1%88%E4%BE%8B"><span class="toc-number">7.</span> <span class="toc-text">使用案例</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/08/22/%E6%B5%8B%E8%AF%95/" title="测试"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="测试"/></a><div class="content"><a class="title" href="/2021/08/22/%E6%B5%8B%E8%AF%95/" title="测试">测试</a><time datetime="2021-08-21T16:34:07.000Z" title="Created 2021-08-22 00:34:07">2021-08-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/20/Nginx%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" title="Nginx"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Nginx"/></a><div class="content"><a class="title" href="/2021/08/20/Nginx%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/" title="Nginx">Nginx</a><time datetime="2021-08-19T16:00:00.000Z" title="Created 2021-08-20 00:00:00">2021-08-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/19/Sysmon%E4%BD%BF%E7%94%A8/" title="Sysmon"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Sysmon"/></a><div class="content"><a class="title" href="/2021/08/19/Sysmon%E4%BD%BF%E7%94%A8/" title="Sysmon">Sysmon</a><time datetime="2021-08-18T16:00:00.000Z" title="Created 2021-08-19 00:00:00">2021-08-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/15/MySQL%E6%B3%A8%E5%85%A5/" title="MySQL注入"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL注入"/></a><div class="content"><a class="title" href="/2021/08/15/MySQL%E6%B3%A8%E5%85%A5/" title="MySQL注入">MySQL注入</a><time datetime="2021-08-14T16:00:00.000Z" title="Created 2021-08-15 00:00:00">2021-08-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/07/11/AWVS%E6%89%AB%E6%8F%8F%E5%99%A8/" title="AWVS扫描器"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AWVS扫描器"/></a><div class="content"><a class="title" href="/2020/07/11/AWVS%E6%89%AB%E6%8F%8F%E5%99%A8/" title="AWVS扫描器">AWVS扫描器</a><time datetime="2020-07-10T16:00:00.000Z" title="Created 2020-07-11 00:00:00">2020-07-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By John Doe</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
