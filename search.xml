@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title>暴力破解</title>
+      <link href="/2021/09/06/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/"/>
+      <url>/2021/09/06/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<h2 id="tomcat认证爆破"><a href="#tomcat认证爆破" class="headerlink" title="tomcat认证爆破"></a>tomcat认证爆破</h2><p>密码特征：用户名密码<code>:</code>相连，base64编码</p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906195540654.png" alt="image-20210906195540654"></p><p>使用迭代器，添加第一个字符串的字典</p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906195824006.png" alt="image-20210906195824006"></p><p>同理添加第2，3个要拼接的字符串</p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906195837171.png" alt="image-20210906195837171"></p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906195918991.png" alt="image-20210906195918991"></p><p>进行base64编码</p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906200007890.png" alt="image-20210906200007890"></p><p>成功返回200，失败返回401</p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906200045570.png" alt="image-20210906200045570"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 安全工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>windows日志</title>
+      <link href="/2021/09/06/windows%E6%97%A5%E5%BF%97/"/>
+      <url>/2021/09/06/windows%E6%97%A5%E5%BF%97/</url>
+      
+        <content type="html"><![CDATA[<h2 id="日志位置"><a href="#日志位置" class="headerlink" title="日志位置"></a>日志位置</h2><h3 id="windows-2000专业版-windows-Server2003-windows-XP"><a href="#windows-2000专业版-windows-Server2003-windows-XP" class="headerlink" title="windows 2000专业版/windows Server2003/windows XP"></a>windows 2000专业版/windows Server2003/windows XP</h3><p>系统日志 <code>C:\Windows\System32\config\SysEvent.evt</code></p><p>安全性日志 <code>C:\Windows\System32\config\SecEvent.evt</code></p><p>应用程序日志 <code>C:\Windows\System32\config\AppEvent.evt</code></p><h3 id="Vista-win7-win8-win10-winser2008以上"><a href="#Vista-win7-win8-win10-winser2008以上" class="headerlink" title="Vista/win7/win8/win10/winser2008以上"></a>Vista/win7/win8/win10/winser2008以上</h3><p>系统日志 <code>%SystemRoot%\System32\Winevt\Logs\System.evtx</code></p><p>安全性日志 <code>%SystemRoot%\System32\Winevt\Logs\Security.evtx</code></p><p>应用程序日志 <code>%SystemRoot%\System32\Winevt\Logs\Application.evtx</code></p><p>事件查看器 <code>win+r --&gt; eventvwr</code></p><h2 id="日志分类"><a href="#日志分类" class="headerlink" title="日志分类"></a>日志分类</h2><h3 id="1-系统日志"><a href="#1-系统日志" class="headerlink" title="1.系统日志"></a>1.系统日志</h3><p>主要记录驱动程序，操作系统的多种组件，应用软件在运行中出现的重大问题，包括重要数据的丢失、错误，以及系统产生的崩溃行为等。</p><h3 id="2-安全性日志"><a href="#2-安全性日志" class="headerlink" title="2.安全性日志"></a>2.安全性日志</h3><p>主要记录各种与安全相关的事件，包括登录与退出系统的成功与不成功信息，对系统中重要资源的各种操作，对系统文件创建、删除、更改等操作。</p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621151545645-ed87a0f2-18b8-46a6-acf0-3f90ed9ae6b0.png" alt="img"></p><h3 id="3-应用程序日志"><a href="#3-应用程序日志" class="headerlink" title="3.应用程序日志"></a>3.应用程序日志</h3><p>记录各种应用程序产生的各类事件</p><mark class="hl-label orange">注意</mark>  windows 2000专业版/windows Server2003/windows XP中只有应用程序、安全性、系统三类日志。<p><strong>PowerShell日志</strong></p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906143917888.png" alt="image-20210906143917888"></p><h2 id="日志常用事件ID"><a href="#日志常用事件ID" class="headerlink" title="日志常用事件ID"></a>日志常用事件ID</h2><p><a href="https://docs.microsoft.com/zh-cn/windows/security/identity-protection/">标识和访问管理</a></p><h3 id="应急响应中常用"><a href="#应急响应中常用" class="headerlink" title="应急响应中常用"></a>应急响应中常用</h3><table><thead><tr><th>事件ID(旧版本)</th><th>事件ID(新版本)</th><th>描述</th><th>事件日志</th></tr></thead><tbody><tr><td>528</td><td>4624</td><td>成功登录</td><td>安全</td></tr><tr><td>529</td><td>4625</td><td>失败登录</td><td>安全</td></tr><tr><td>680</td><td>4776</td><td>成功/失败的账户认证</td><td>安全</td></tr><tr><td>624</td><td>4720</td><td>创建用户</td><td>安全</td></tr><tr><td>636</td><td>4732</td><td>添加用户到启用安全性的本地组中</td><td>安全</td></tr><tr><td>632</td><td>4728</td><td>添加用户到启用安全性的全局组中</td><td>安全</td></tr><tr><td>2934</td><td>7030</td><td>服务创建错误</td><td>系统</td></tr><tr><td>2944</td><td>7040</td><td>IPSEC服务的启动类型已从禁用更改为自动启动</td><td>系统</td></tr><tr><td>2949</td><td>7045</td><td>服务创建</td><td>系统</td></tr></tbody></table><h3 id="登录相关日志事件ID"><a href="#登录相关日志事件ID" class="headerlink" title="登录相关日志事件ID"></a>登录相关日志事件ID</h3><table><thead><tr><th>事件ID</th><th>名称</th><th>描述</th></tr></thead><tbody><tr><td>4624</td><td>用户登录成功</td><td>在目标计算机上创建登录会话时 (此事件) 。 它会在已访问的计算机上生成，其中创建了会话。</td></tr><tr><td>4625</td><td>用户登录失败</td><td>如果在帐户已被锁定时尝试登录账户失败，则生成此事件。</td></tr><tr><td>4672</td><td>特殊权限用户登录</td><td>特殊权限登录，如登录Administrator,一般会看到4624和4672一起出现</td></tr><tr><td>4648</td><td>显式凭证登录</td><td>当进程通过显式指定帐户的凭据尝试登录帐户时。这最常发生在批处理类型配置（如计划任务）中，或者使用”RUNAS/USER”命令时(不过在使用runas时，也会产生4624)</td></tr></tbody></table><h3 id="登录类型"><a href="#登录类型" class="headerlink" title="登录类型"></a>登录类型</h3><table><thead><tr><th>ID</th><th>登录类型(LogonType)</th><th>描述</th></tr></thead><tbody><tr><td>2</td><td>Interactive</td><td>用户登录到本机</td></tr><tr><td>3</td><td>Network</td><td>用户或计算手机从网络登录到本机，如果网络共享，或使用 net use 访问网络共享，net view 查看网络共享</td></tr><tr><td>4</td><td>Batch</td><td>批处理登录类型，无需用户干预</td></tr><tr><td>5</td><td>Service</td><td>服务控制管理器登录</td></tr><tr><td>7</td><td>Unlock</td><td>用户解锁主机</td></tr><tr><td>8</td><td>NetworkCleartext</td><td>用户从网络登录到此计算机，用户密码用非哈希的形式传递</td></tr><tr><td>9</td><td>NewCredentials</td><td>进程或线程克隆了其当前令牌，但为出站连接指定了新凭据</td></tr><tr><td>10</td><td>Remotelnteractive</td><td>使用终端服务或远程桌面连接登录</td></tr><tr><td>11</td><td>Cachedlnteractive</td><td>用户使用本地存储在计算机上的凭据登录到计算机（域控制器可能无法验证凭据），如主机不能连接域控，以前使用域账户登录过这台主机，再登录就会产生这样日志</td></tr><tr><td>12</td><td>CachedRemotelnteractive</td><td>与Remotelnteractive 相同，内部用于审计目的</td></tr><tr><td>13</td><td>CachedUnlock</td><td>登录尝试解锁</td></tr></tbody></table><h3 id="启用事件相关"><a href="#启用事件相关" class="headerlink" title="启用事件相关"></a>启用事件相关</h3><table><thead><tr><th>事件</th><th>事件ID</th><th>事件级别</th><th>事件日志</th><th>事件来源</th></tr></thead><tbody><tr><td>关机初始化失败</td><td>1074</td><td>警告</td><td>User32</td><td>User32</td></tr><tr><td>Windows关闭</td><td>13</td><td>信息</td><td>系统</td><td>Kernel-General</td></tr><tr><td>Windows启动</td><td>12</td><td>信息</td><td>系统</td><td>Kernel-General</td></tr></tbody></table><h3 id="日志清除相关"><a href="#日志清除相关" class="headerlink" title="日志清除相关"></a>日志清除相关</h3><table><thead><tr><th>事件</th><th>事件ID</th><th>事件级别</th><th>事件日志</th><th>事件来源</th></tr></thead><tbody><tr><td>事件日志服务关闭</td><td>1100</td><td>信息</td><td>安全</td><td>EventLog</td></tr><tr><td>事件日志被清除</td><td>104</td><td>信息</td><td>系统</td><td>EventLog</td></tr><tr><td>事件日志被清除</td><td>1102</td><td>信息</td><td>安全</td><td>EventLog</td></tr></tbody></table><p><a href="https://docs.microsoft.com/zh-cn/windows/security/identity-protection/">Windows事件ID大全</a></p><h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><h3 id="内置筛选器"><a href="#内置筛选器" class="headerlink" title="内置筛选器"></a>内置筛选器</h3><p>筛选内容：记录时间、事件级别、任务类别、关键字等</p><h3 id="PowerShell进行日志分析"><a href="#PowerShell进行日志分析" class="headerlink" title="PowerShell进行日志分析"></a>PowerShell进行日志分析</h3><h4 id="Get-EventLog和Get-WinEvent区别"><a href="#Get-EventLog和Get-WinEvent区别" class="headerlink" title="Get-EventLog和Get-WinEvent区别"></a><code>Get-EventLog</code>和<code>Get-WinEvent</code>区别</h4><p><code>Get-EventLog</code>只获取传统的事件日志，<code>Get-WinEvent</code>是从传统的事件日志和新Windows事件日志技术生成的事件日志中获取事件，但同时需要<code>Vista</code>,<code>server2008</code>还需要<code>.NET 3.5以上版本</code></p><p>Get-EventLog筛选日志</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-EventLog</span> Security <span class="literal">-instanceid</span> <span class="number">4624</span></span><br></pre></td></tr></table></figure><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906165840352.png" alt="image-20210906165840352"></p><p>Get-WinEvent筛选日志</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-WinEvent</span> <span class="literal">-FilterHashtable</span> <span class="selector-tag">@</span>&#123;Logname=<span class="string">&#x27;security&#x27;</span>;ID=<span class="string">&#x27;4624&#x27;</span>&#125;</span><br></pre></td></tr></table></figure><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906170344196.png" alt="image-20210906170344196"></p><h3 id="日志工具"><a href="#日志工具" class="headerlink" title="日志工具"></a>日志工具</h3><h4 id="fulleventlogview"><a href="#fulleventlogview" class="headerlink" title="fulleventlogview"></a>fulleventlogview</h4><p><a href="https://www.nirsoft.net/utils/full_event_log_view.html">下载地址</a></p><p>免安装，检索速度比自带的好。默认是7天日志，可在高级选项中更改。</p><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906163615943.png" alt="image-20210906163615943"></p><h2 id="日志清除"><a href="#日志清除" class="headerlink" title="日志清除"></a>日志清除</h2><p>以下内容主要参考：<a href="https://www.cnblogs.com/xiaozi/p/13633934.html">Windows 入侵痕迹清理技巧</a></p><h3 id="1-事件查看器，清除日志"><a href="#1-事件查看器，清除日志" class="headerlink" title="1.事件查看器，清除日志"></a>1.事件查看器，清除日志</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 应急响应 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 日志分析 </tag>
+            
+            <tag> 主机安全 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>sql注入Tips</title>
       <link href="/2021/09/04/sql%E6%B3%A8%E5%85%A5Tips/"/>
       <url>/2021/09/04/sql%E6%B3%A8%E5%85%A5Tips/</url>

@@ -1,0 +1,432 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>windows日志 | DropAnn</title><meta name="keywords" content="日志分析,主机安全"><meta name="author" content="DropAnn"><meta name="copyright" content="DropAnn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="日志位置windows 2000专业版&#x2F;windows Server2003&#x2F;windows XP系统日志 C:\Windows\System32\config\SysEvent.evt 安全性日志 C:\Windows\System32\config\SecEvent.evt 应用程序日志 C:\Windows\System32\config\AppEvent.evt Vista&#x2F;win7&#x2F;wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows日志">
+<meta property="og:url" content="http://example.com/2021/09/06/windows%E6%97%A5%E5%BF%97/index.html">
+<meta property="og:site_name" content="DropAnn">
+<meta property="og:description" content="日志位置windows 2000专业版&#x2F;windows Server2003&#x2F;windows XP系统日志 C:\Windows\System32\config\SysEvent.evt 安全性日志 C:\Windows\System32\config\SecEvent.evt 应用程序日志 C:\Windows\System32\config\AppEvent.evt Vista&#x2F;win7&#x2F;wi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg">
+<meta property="article:published_time" content="2021-09-06T05:56:13.000Z">
+<meta property="article:modified_time" content="2021-09-06T09:59:04.451Z">
+<meta property="article:author" content="DropAnn">
+<meta property="article:tag" content="日志分析">
+<meta property="article:tag" content="主机安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/09/06/windows%E6%97%A5%E5%BF%97/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'windows日志',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-06 17:59:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DropAnn</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">windows日志</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-06T05:56:13.000Z" title="发表于 2021-09-06 13:56:13">2021-09-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-06T09:59:04.451Z" title="更新于 2021-09-06 17:59:04">2021-09-06</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="windows日志"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="日志位置"><a href="#日志位置" class="headerlink" title="日志位置"></a>日志位置</h2><h3 id="windows-2000专业版-windows-Server2003-windows-XP"><a href="#windows-2000专业版-windows-Server2003-windows-XP" class="headerlink" title="windows 2000专业版/windows Server2003/windows XP"></a>windows 2000专业版/windows Server2003/windows XP</h3><p>系统日志 <code>C:\Windows\System32\config\SysEvent.evt</code></p>
+<p>安全性日志 <code>C:\Windows\System32\config\SecEvent.evt</code></p>
+<p>应用程序日志 <code>C:\Windows\System32\config\AppEvent.evt</code></p>
+<h3 id="Vista-win7-win8-win10-winser2008以上"><a href="#Vista-win7-win8-win10-winser2008以上" class="headerlink" title="Vista/win7/win8/win10/winser2008以上"></a>Vista/win7/win8/win10/winser2008以上</h3><p>系统日志 <code>%SystemRoot%\System32\Winevt\Logs\System.evtx</code></p>
+<p>安全性日志 <code>%SystemRoot%\System32\Winevt\Logs\Security.evtx</code></p>
+<p>应用程序日志 <code>%SystemRoot%\System32\Winevt\Logs\Application.evtx</code></p>
+<p>事件查看器 <code>win+r --&gt; eventvwr</code></p>
+<h2 id="日志分类"><a href="#日志分类" class="headerlink" title="日志分类"></a>日志分类</h2><h3 id="1-系统日志"><a href="#1-系统日志" class="headerlink" title="1.系统日志"></a>1.系统日志</h3><p>主要记录驱动程序，操作系统的多种组件，应用软件在运行中出现的重大问题，包括重要数据的丢失、错误，以及系统产生的崩溃行为等。</p>
+<h3 id="2-安全性日志"><a href="#2-安全性日志" class="headerlink" title="2.安全性日志"></a>2.安全性日志</h3><p>主要记录各种与安全相关的事件，包括登录与退出系统的成功与不成功信息，对系统中重要资源的各种操作，对系统文件创建、删除、更改等操作。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621151545645-ed87a0f2-18b8-46a6-acf0-3f90ed9ae6b0.png" alt="img"></p>
+<h3 id="3-应用程序日志"><a href="#3-应用程序日志" class="headerlink" title="3.应用程序日志"></a>3.应用程序日志</h3><p>记录各种应用程序产生的各类事件</p>
+<mark class="hl-label orange">注意</mark>  windows 2000专业版/windows Server2003/windows XP中只有应用程序、安全性、系统三类日志。
+
+<p><strong>PowerShell日志</strong></p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906143917888.png" alt="image-20210906143917888"></p>
+<h2 id="日志常用事件ID"><a href="#日志常用事件ID" class="headerlink" title="日志常用事件ID"></a>日志常用事件ID</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/security/identity-protection/">标识和访问管理</a></p>
+<h3 id="应急响应中常用"><a href="#应急响应中常用" class="headerlink" title="应急响应中常用"></a>应急响应中常用</h3><table>
+<thead>
+<tr>
+<th>事件ID(旧版本)</th>
+<th>事件ID(新版本)</th>
+<th>描述</th>
+<th>事件日志</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>528</td>
+<td>4624</td>
+<td>成功登录</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>529</td>
+<td>4625</td>
+<td>失败登录</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>680</td>
+<td>4776</td>
+<td>成功/失败的账户认证</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>624</td>
+<td>4720</td>
+<td>创建用户</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>636</td>
+<td>4732</td>
+<td>添加用户到启用安全性的本地组中</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>632</td>
+<td>4728</td>
+<td>添加用户到启用安全性的全局组中</td>
+<td>安全</td>
+</tr>
+<tr>
+<td>2934</td>
+<td>7030</td>
+<td>服务创建错误</td>
+<td>系统</td>
+</tr>
+<tr>
+<td>2944</td>
+<td>7040</td>
+<td>IPSEC服务的启动类型已从禁用更改为自动启动</td>
+<td>系统</td>
+</tr>
+<tr>
+<td>2949</td>
+<td>7045</td>
+<td>服务创建</td>
+<td>系统</td>
+</tr>
+</tbody></table>
+<h3 id="登录相关日志事件ID"><a href="#登录相关日志事件ID" class="headerlink" title="登录相关日志事件ID"></a>登录相关日志事件ID</h3><table>
+<thead>
+<tr>
+<th>事件ID</th>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4624</td>
+<td>用户登录成功</td>
+<td>在目标计算机上创建登录会话时 (此事件) 。 它会在已访问的计算机上生成，其中创建了会话。</td>
+</tr>
+<tr>
+<td>4625</td>
+<td>用户登录失败</td>
+<td>如果在帐户已被锁定时尝试登录账户失败，则生成此事件。</td>
+</tr>
+<tr>
+<td>4672</td>
+<td>特殊权限用户登录</td>
+<td>特殊权限登录，如登录Administrator,一般会看到4624和4672一起出现</td>
+</tr>
+<tr>
+<td>4648</td>
+<td>显式凭证登录</td>
+<td>当进程通过显式指定帐户的凭据尝试登录帐户时。这最常发生在批处理类型配置（如计划任务）中，或者使用”RUNAS/USER”命令时(不过在使用runas时，也会产生4624)</td>
+</tr>
+</tbody></table>
+<h3 id="登录类型"><a href="#登录类型" class="headerlink" title="登录类型"></a>登录类型</h3><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>登录类型(LogonType)</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>Interactive</td>
+<td>用户登录到本机</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Network</td>
+<td>用户或计算手机从网络登录到本机，如果网络共享，或使用 net use 访问网络共享，net view 查看网络共享</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Batch</td>
+<td>批处理登录类型，无需用户干预</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Service</td>
+<td>服务控制管理器登录</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Unlock</td>
+<td>用户解锁主机</td>
+</tr>
+<tr>
+<td>8</td>
+<td>NetworkCleartext</td>
+<td>用户从网络登录到此计算机，用户密码用非哈希的形式传递</td>
+</tr>
+<tr>
+<td>9</td>
+<td>NewCredentials</td>
+<td>进程或线程克隆了其当前令牌，但为出站连接指定了新凭据</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Remotelnteractive</td>
+<td>使用终端服务或远程桌面连接登录</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Cachedlnteractive</td>
+<td>用户使用本地存储在计算机上的凭据登录到计算机（域控制器可能无法验证凭据），如主机不能连接域控，以前使用域账户登录过这台主机，再登录就会产生这样日志</td>
+</tr>
+<tr>
+<td>12</td>
+<td>CachedRemotelnteractive</td>
+<td>与Remotelnteractive 相同，内部用于审计目的</td>
+</tr>
+<tr>
+<td>13</td>
+<td>CachedUnlock</td>
+<td>登录尝试解锁</td>
+</tr>
+</tbody></table>
+<h3 id="启用事件相关"><a href="#启用事件相关" class="headerlink" title="启用事件相关"></a>启用事件相关</h3><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>事件ID</th>
+<th>事件级别</th>
+<th>事件日志</th>
+<th>事件来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>关机初始化失败</td>
+<td>1074</td>
+<td>警告</td>
+<td>User32</td>
+<td>User32</td>
+</tr>
+<tr>
+<td>Windows关闭</td>
+<td>13</td>
+<td>信息</td>
+<td>系统</td>
+<td>Kernel-General</td>
+</tr>
+<tr>
+<td>Windows启动</td>
+<td>12</td>
+<td>信息</td>
+<td>系统</td>
+<td>Kernel-General</td>
+</tr>
+</tbody></table>
+<h3 id="日志清除相关"><a href="#日志清除相关" class="headerlink" title="日志清除相关"></a>日志清除相关</h3><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>事件ID</th>
+<th>事件级别</th>
+<th>事件日志</th>
+<th>事件来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>事件日志服务关闭</td>
+<td>1100</td>
+<td>信息</td>
+<td>安全</td>
+<td>EventLog</td>
+</tr>
+<tr>
+<td>事件日志被清除</td>
+<td>104</td>
+<td>信息</td>
+<td>系统</td>
+<td>EventLog</td>
+</tr>
+<tr>
+<td>事件日志被清除</td>
+<td>1102</td>
+<td>信息</td>
+<td>安全</td>
+<td>EventLog</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/security/identity-protection/">Windows事件ID大全</a></p>
+<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><h3 id="内置筛选器"><a href="#内置筛选器" class="headerlink" title="内置筛选器"></a>内置筛选器</h3><p>筛选内容：记录时间、事件级别、任务类别、关键字等</p>
+<h3 id="PowerShell进行日志分析"><a href="#PowerShell进行日志分析" class="headerlink" title="PowerShell进行日志分析"></a>PowerShell进行日志分析</h3><h4 id="Get-EventLog和Get-WinEvent区别"><a href="#Get-EventLog和Get-WinEvent区别" class="headerlink" title="Get-EventLog和Get-WinEvent区别"></a><code>Get-EventLog</code>和<code>Get-WinEvent</code>区别</h4><p><code>Get-EventLog</code>只获取传统的事件日志，<code>Get-WinEvent</code>是从传统的事件日志和新Windows事件日志技术生成的事件日志中获取事件，但同时需要<code>Vista</code>,<code>server2008</code>还需要<code>.NET 3.5以上版本</code></p>
+<p>Get-EventLog筛选日志</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-EventLog</span> Security <span class="literal">-instanceid</span> <span class="number">4624</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906165840352.png" alt="image-20210906165840352"></p>
+<p>Get-WinEvent筛选日志</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-WinEvent</span> <span class="literal">-FilterHashtable</span> <span class="selector-tag">@</span>&#123;Logname=<span class="string">&#x27;security&#x27;</span>;ID=<span class="string">&#x27;4624&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906170344196.png" alt="image-20210906170344196"></p>
+<h3 id="日志工具"><a href="#日志工具" class="headerlink" title="日志工具"></a>日志工具</h3><h4 id="fulleventlogview"><a href="#fulleventlogview" class="headerlink" title="fulleventlogview"></a>fulleventlogview</h4><p><a target="_blank" rel="noopener" href="https://www.nirsoft.net/utils/full_event_log_view.html">下载地址</a></p>
+<p>免安装，检索速度比自带的好。默认是7天日志，可在高级选项中更改。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210906163615943.png" alt="image-20210906163615943"></p>
+<h2 id="日志清除"><a href="#日志清除" class="headerlink" title="日志清除"></a>日志清除</h2><p>以下内容主要参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaozi/p/13633934.html">Windows 入侵痕迹清理技巧</a></p>
+<h3 id="1-事件查看器，清除日志"><a href="#1-事件查看器，清除日志" class="headerlink" title="1.事件查看器，清除日志"></a>1.事件查看器，清除日志</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">DropAnn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/09/06/windows%E6%97%A5%E5%BF%97/">http://example.com/2021/09/06/windows%E6%97%A5%E5%BF%97/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">DropAnn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/">日志分析</a><a class="post-meta__tags" href="/tags/%E4%B8%BB%E6%9C%BA%E5%AE%89%E5%85%A8/">主机安全</a></div><div class="post_share"><div class="social-share" data-image="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/09/06/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/"><img class="prev-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210829164440412.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">暴力破解</div></div></a></div><div class="next-post pull-right"><a href="/2021/09/04/sql%E6%B3%A8%E5%85%A5Tips/"><img class="next-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/MySQL-Logo.wine.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">sql注入Tips</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/09/01/linux日志/" title="linux日志"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/935082.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-01</div><div class="title">linux日志</div></div></a></div><div><a href="/2021/08/20/Nginx日志/" title="Nginx日志"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAib37j5z575ipNuGauhFT84Qx2-wRU8NgTvs-xE-g38Ucg_X0YUJpg4hEFtpQNk___g.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-20</div><div class="title">Nginx日志</div></div></a></div><div><a href="/2021/08/24/Nginx攻击日志/" title="分析Nginx攻击日志"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/ORzjbQVFJasX5aR2DaTg2_Zx5KSH75KdTtVIpx5BAib37j5z575ipNuGauhFT84Qx2-wRU8NgTvs-xE-g38Ucg_X0YUJpg4hEFtpQNk___g.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-24</div><div class="title">分析Nginx攻击日志</div></div></a></div><div><a href="/2021/08/27/Apache日志/" title="Apache日志"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-27</div><div class="title">Apache日志</div></div></a></div><div><a href="/2021/08/31/IIS日志/" title="IIS日志"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/922380.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-31</div><div class="title">IIS日志</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">DropAnn</div><div class="author-info__description">在研发和安服仔之间徘徊</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">22</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DropAnn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DropAnn" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dropann@hotmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">日志位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#windows-2000%E4%B8%93%E4%B8%9A%E7%89%88-windows-Server2003-windows-XP"><span class="toc-number">1.1.</span> <span class="toc-text">windows 2000专业版&#x2F;windows Server2003&#x2F;windows XP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vista-win7-win8-win10-winser2008%E4%BB%A5%E4%B8%8A"><span class="toc-number">1.2.</span> <span class="toc-text">Vista&#x2F;win7&#x2F;win8&#x2F;win10&#x2F;winser2008以上</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">日志分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97"><span class="toc-number">2.1.</span> <span class="toc-text">1.系统日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%AE%89%E5%85%A8%E6%80%A7%E6%97%A5%E5%BF%97"><span class="toc-number">2.2.</span> <span class="toc-text">2.安全性日志</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%97%A5%E5%BF%97"><span class="toc-number">2.3.</span> <span class="toc-text">3.应用程序日志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%B8%B8%E7%94%A8%E4%BA%8B%E4%BB%B6ID"><span class="toc-number">3.</span> <span class="toc-text">日志常用事件ID</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E4%B8%AD%E5%B8%B8%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">应急响应中常用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%9B%B8%E5%85%B3%E6%97%A5%E5%BF%97%E4%BA%8B%E4%BB%B6ID"><span class="toc-number">3.2.</span> <span class="toc-text">登录相关日志事件ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">登录类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%94%A8%E4%BA%8B%E4%BB%B6%E7%9B%B8%E5%85%B3"><span class="toc-number">3.4.</span> <span class="toc-text">启用事件相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%B8%85%E9%99%A4%E7%9B%B8%E5%85%B3"><span class="toc-number">3.5.</span> <span class="toc-text">日志清除相关</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">4.</span> <span class="toc-text">日志分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%AE%E7%AD%9B%E9%80%89%E5%99%A8"><span class="toc-number">4.1.</span> <span class="toc-text">内置筛选器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PowerShell%E8%BF%9B%E8%A1%8C%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">4.2.</span> <span class="toc-text">PowerShell进行日志分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Get-EventLog%E5%92%8CGet-WinEvent%E5%8C%BA%E5%88%AB"><span class="toc-number">4.2.1.</span> <span class="toc-text">Get-EventLog和Get-WinEvent区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%B7%A5%E5%85%B7"><span class="toc-number">4.3.</span> <span class="toc-text">日志工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fulleventlogview"><span class="toc-number">4.3.1.</span> <span class="toc-text">fulleventlogview</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%B8%85%E9%99%A4"><span class="toc-number">5.</span> <span class="toc-text">日志清除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%8B%E4%BB%B6%E6%9F%A5%E7%9C%8B%E5%99%A8%EF%BC%8C%E6%B8%85%E9%99%A4%E6%97%A5%E5%BF%97"><span class="toc-number">5.1.</span> <span class="toc-text">1.事件查看器，清除日志</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/09/06/%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3/" title="暴力破解">暴力破解</a><time datetime="2021-09-06T11:53:28.000Z" title="发表于 2021-09-06 19:53:28">2021-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/09/06/windows%E6%97%A5%E5%BF%97/" title="windows日志">windows日志</a><time datetime="2021-09-06T05:56:13.000Z" title="发表于 2021-09-06 13:56:13">2021-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/09/04/sql%E6%B3%A8%E5%85%A5Tips/" title="sql注入Tips">sql注入Tips</a><time datetime="2021-09-04T02:50:31.000Z" title="发表于 2021-09-04 10:50:31">2021-09-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/09/01/linux%E6%97%A5%E5%BF%97/" title="linux日志">linux日志</a><time datetime="2021-09-01T06:20:25.000Z" title="发表于 2021-09-01 14:20:25">2021-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2021/08/31/IIS%E6%97%A5%E5%BF%97/" title="IIS日志">IIS日志</a><time datetime="2021-08-31T07:24:10.000Z" title="发表于 2021-08-31 15:24:10">2021-08-31</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By DropAnn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
