@@ -1,0 +1,239 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>dirsearch | DropAnn</title><meta name="keywords" content="安全工具,信息收集"><meta name="author" content="DropAnn"><meta name="copyright" content="DropAnn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1dirsearch.py [-u|--url] target [-e|--extensions] extensions [options] Options:  Mandatory(强制参数):-l FILE, --url-list&#x3D;FILE  #扫描列表文件中所有的url --stdin           URL list from STDIN    –cidr&#x3D;CIDR     Target">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dirsearch">
+<meta property="og:url" content="https://dropann.github.io/p/56e7c490.html">
+<meta property="og:site_name" content="DropAnn">
+<meta property="og:description" content="1dirsearch.py [-u|--url] target [-e|--extensions] extensions [options] Options:  Mandatory(强制参数):-l FILE, --url-list&#x3D;FILE  #扫描列表文件中所有的url --stdin           URL list from STDIN    –cidr&#x3D;CIDR     Target">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210830000953882.png">
+<meta property="article:published_time" content="2021-04-22T01:45:47.000Z">
+<meta property="article:modified_time" content="2021-09-04T02:39:30.494Z">
+<meta property="article:author" content="DropAnn">
+<meta property="article:tag" content="安全工具">
+<meta property="article:tag" content="信息收集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210830000953882.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dropann.github.io/p/56e7c490"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'dirsearch',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-04 10:39:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210830000953882.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DropAnn</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">dirsearch</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-22T01:45:47.000Z" title="发表于 2021-04-22 09:45:47">2021-04-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-04T02:39:30.494Z" title="更新于 2021-09-04 10:39:30">2021-09-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web%E5%AE%89%E5%85%A8/">Web安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">716</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="dirsearch"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dirsearch.py [-u|--url] target [-e|--extensions] extensions [options] Options:</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mandatory-强制参数"><a href="#Mandatory-强制参数" class="headerlink" title="Mandatory(强制参数):"></a>Mandatory(强制参数):</h2><p><code>-l FILE</code>, <code>--url-list=FILE</code>  #扫描列表文件中所有的url</p>
+<p><code>--stdin</code>           URL list from STDIN    –cidr=CIDR     Target CIDR</p>
+<p><code>--raw=FILE</code>     File contains the raw request (use –scheme flag to set the scheme)</p>
+<p><code>-e EXTENSIONS</code> <code>--extensions=EXTENSIONS</code>                          设置网站脚本类型，<code>php,asp,*</code></p>
+<p><code>-X EXTENSIONS</code> <code>--exclude-extensions=EXTENSIONS</code>     排除以逗号分隔的扩展名列表 (Example: asp,jsp)</p>
+<p><code>-f</code> <code>--force-extensions</code>     扩展字典里的每个词条</p>
+<h2 id="Dictionary-Settings-字典设置"><a href="#Dictionary-Settings-字典设置" class="headerlink" title="Dictionary Settings(字典设置):"></a>Dictionary Settings(字典设置):</h2><p><code>-w WORDLIST</code> <code>--wordlists=WORDLIST</code>              <strong>设置字典（逗号分隔）</strong></p>
+<p><code>--prefixes=PREFIXES</code>                             向所有条目添加自定义前缀（以逗号分隔）</p>
+<p><code>--suffixes=SUFFIXES</code>                             向所有条目添加自定义后缀（以逗号分隔）</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1619059870602-150f6a26-7741-4ea2-a878-9e71c89c1eff.png" alt="img"></p>
+<p><code>--remove-extensions</code>     #删除所有单词列表条目中的扩展名（例如：admin.php-&gt; admin）</p>
+<p><code>-U</code> <code>--uppercase</code>          #Uppercase wordlist 大写</p>
+<p><code>-L</code> <code>--lowercase</code>           # Lowercase wordlist 小写</p>
+<p><code>-C</code> <code>--capital</code>               #Capital wordlist 首字母大写</p>
+<h2 id="General-Settings-通用设置"><a href="#General-Settings-通用设置" class="headerlink" title="General Settings(通用设置):"></a>General Settings(通用设置):</h2><p><code>-r</code>  <code>--recursive   #Bruteforce recursively</code>    <strong># 递归扫描，跑出目录后，继续跑目录下面的目录</strong></p>
+<p><code>-R DEPTH</code> <code>--recursion-depth=DEPTH</code>        <strong># 设置最大递归深度</strong></p>
+<p><code>-t THREADS</code> <code>--threads=THREADS</code>               <strong># 设置线程数量</strong>  </p>
+<p><code>--subdirs=SUBDIRS</code>                         # 扫描指定URL的子目录（用逗号分隔）</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1619061483770-3314f9f3-3cdf-42aa-a926-a58cc0ef54eb.png" alt="img"></p>
+<p><code>--exclude-subdirs=SUBDIRS</code>                         # 在递归扫描中，<strong>排除指定的子目录</strong> </p>
+<p><code>-i STATUS</code> <code>--include-status=STATUS</code>         # 包含的状态码 (Example: 200,300-399)</p>
+<p><code>-x STATUS</code> <code>--exclude-status=STATUS</code>     <strong># 排除的状态码 (Example: 301,500-599)</strong></p>
+<p><code>--exclude-sizes=SIZES</code>                     # 排除异常响应 (Example: 123B,4KB)</p>
+<p><code>--exclude-texts=TEXTS</code>                     # 排除文字响应(Example: ‘Not found’, ‘Error’)</p>
+<p><code>--exclude-regexps=REGEXPS</code>          # 使用正则匹配排除的文字响应(Example: ‘Not foun[a-z]{1}’, ‘^Error$’)</p>
+<p><code>--exclude-redirects=REGEXPS</code>     # 通过重定向正则表达式或文本排除响应，逗号隔开(Example: ‘<a target="_blank" rel="noopener" href="https://okta.com/*&#39;">https://okta.com/*&#39;</a>)</p>
+<p><code>--random-agent</code>           <strong># 为每个请求选择一个随机的User-Agent</strong></p>
+<p><code>--skip-on-429</code>             # 返回429状态码时跳过目标</p>
+<p><code>--full-url</code>                     # 返回完整url</p>
+<h2 id="Request-Settings-请求设置"><a href="#Request-Settings-请求设置" class="headerlink" title="Request Settings(请求设置):"></a>Request Settings(请求设置):</h2><p><code>-m METHOD, --http-method=METHOD</code>     # HTTP请求方式(default: GET)</p>
+<p><code>-d DATA, --data=DATA</code>                    # HTTP请求数据</p>
+<p><code>-H HEADERS, --header=HEADERS</code># HTTP请求标头，支持多个标志 (Example: -H ‘Referer: example.com’ -H ‘Accept: <em>/</em>‘)</p>
+<p><code>--header-list=FILE</code>                      # 文件包含HTTP请求标头</p>
+<p><code>-F</code> <code>--follow-redirects</code>                     <strong># 跟随地址重定向扫描</strong></p>
+<p><code>--user-agent=USERAGENT</code>                <strong>#设置用户代理</strong></p>
+<p><code>--cookie=COOKIE</code>                        <strong>#设置cookie</strong></p>
+<h2 id="Connection-Settings-连接设置"><a href="#Connection-Settings-连接设置" class="headerlink" title="Connection Settings(连接设置):"></a>Connection Settings(连接设置):</h2><p><code>--timeout=TIMEOUT</code>          # 设置超时时间</p>
+<p><code>--ip=IP</code>                   # 设置代理IP</p>
+<p><code>-s DELAY, --delay=DELAY</code>    <strong># 设置请求之间的延迟</strong></p>
+<p><code>--proxy=PROXY</code>            # 代理URL，支持HTTP和SOCKS代理 (Example: localhost:8080, socks5://localhost:8088)</p>
+<p><code>--proxy-list=FILE</code>              # File contains proxy servers</p>
+<p><code>--replay-proxy=PROXY</code>         # Proxy to replay with found paths</p>
+<p><code>--scheme=SCHEME</code>           # Default scheme (for raw request or if there is no scheme in the URL)</p>
+<p><code>--max-retries=RETRIES</code>        # 设置最大重试次数</p>
+<p><code>-b, --request-by-hostname</code>      # By default dirsearch requests by IP for speed. This will force requests by hostname</p>
+<p><code>--exit-on-error</code>               # Exit whenever an error occurs</p>
+<p><code>--debug</code>                   # Debug mode</p>
+<h2 id="Reports-报告输出"><a href="#Reports-报告输出" class="headerlink" title="Reports(报告输出):"></a>Reports(报告输出):</h2><p><code>--simple-report=OUTPUTFILE</code></p>
+<p><code>--plain-text-report=OUTPUTFILE</code></p>
+<p><code>--json-report=OUTPUTFILE</code></p>
+<p><code>--xml-report=OUTPUTFILE</code></p>
+<p><code>--markdown-report=OUTPUTFILE</code></p>
+<p><code>--csv-report=OUTPUTFILE</code></p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1619074696275-802dd0f3-5be5-4c03-abf2-27c845ac8b97.png" alt="img">             </p>
+<p>可以通过修改<code>default.conf</code>文件修改默认配置，更多信息访问此链接</p>
+<p>You can change the dirsearch default configurations (default extensions,timeout, wordlist location, …) by editing the “default.conf” file. More</p>
+<p>information at <a target="_blank" rel="noopener" href="https://github.com/maurosoria/dirsearch">https://github.com/maurosoria/dirsearch</a>.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">DropAnn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dropann.github.io/p/56e7c490.html">https://dropann.github.io/p/56e7c490.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dropann.github.io" target="_blank">DropAnn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/">安全工具</a><a class="post-meta__tags" href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">信息收集</a></div><div class="post_share"><div class="social-share" data-image="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210830000953882.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/p/366383bb.html"><img class="prev-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210829164629849.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Nmap</div></div></a></div><div class="next-post pull-right"><a href="/p/34660774.html"><img class="next-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210822210641722.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">AWVS扫描器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/p/34660774.html" title="AWVS扫描器"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210822210641722.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-11</div><div class="title">AWVS扫描器</div></div></a></div><div><a href="/p/df53a981.html" title="暴力破解"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/922380.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-06</div><div class="title">暴力破解</div></div></a></div><div><a href="/p/d0f422c5.html" title="Hydra"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/922380.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-07</div><div class="title">Hydra</div></div></a></div><div><a href="/p/366383bb.html" title="Nmap"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210829164629849.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-04</div><div class="title">Nmap</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">DropAnn</div><div class="author-info__description">在研发和安服仔之间徘徊</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">22</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DropAnn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DropAnn" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dropann@hotmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Mandatory-%E5%BC%BA%E5%88%B6%E5%8F%82%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">Mandatory(强制参数):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dictionary-Settings-%E5%AD%97%E5%85%B8%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">Dictionary Settings(字典设置):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#General-Settings-%E9%80%9A%E7%94%A8%E8%AE%BE%E7%BD%AE"><span class="toc-number">3.</span> <span class="toc-text">General Settings(通用设置):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Request-Settings-%E8%AF%B7%E6%B1%82%E8%AE%BE%E7%BD%AE"><span class="toc-number">4.</span> <span class="toc-text">Request Settings(请求设置):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Connection-Settings-%E8%BF%9E%E6%8E%A5%E8%AE%BE%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">Connection Settings(连接设置):</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reports-%E6%8A%A5%E5%91%8A%E8%BE%93%E5%87%BA"><span class="toc-number">6.</span> <span class="toc-text">Reports(报告输出):</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/92957adc.html" title="FTP服务器">FTP服务器</a><time datetime="2021-09-07T06:48:47.000Z" title="发表于 2021-09-07 14:48:47">2021-09-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/d0f422c5.html" title="Hydra">Hydra</a><time datetime="2021-09-07T03:22:46.000Z" title="发表于 2021-09-07 11:22:46">2021-09-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/df53a981.html" title="暴力破解">暴力破解</a><time datetime="2021-09-06T11:53:28.000Z" title="发表于 2021-09-06 19:53:28">2021-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/24f823ca.html" title="windows日志">windows日志</a><time datetime="2021-09-06T05:56:13.000Z" title="发表于 2021-09-06 13:56:13">2021-09-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/9daecfec.html" title="sql注入Tips">sql注入Tips</a><time datetime="2021-09-04T02:50:31.000Z" title="发表于 2021-09-04 10:50:31">2021-09-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By DropAnn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
