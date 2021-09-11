@@ -1,0 +1,420 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Samba服务器 | DropAnn</title><meta name="keywords" content="运维,环境搭建"><meta name="author" content="DropAnn"><meta name="copyright" content="DropAnn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Samba是一个能让Linux系统应用Microsoft网络通讯协议的软件，而SMB是Server Message Block的缩写，即为服务器消息块 ，SMB主要是作为Microsoft的网络通讯协议，后来Samba将SMB通信协议应用到了Linux系统上，就形成了现在的Samba软件。后来微软又把 SMB 改名为 CIFS（Common Internet File System），即公共 In">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Samba服务器">
+<meta property="og:url" content="https://dropann.github.io/p/9eb93f46.html">
+<meta property="og:site_name" content="DropAnn">
+<meta property="og:description" content="Samba是一个能让Linux系统应用Microsoft网络通讯协议的软件，而SMB是Server Message Block的缩写，即为服务器消息块 ，SMB主要是作为Microsoft的网络通讯协议，后来Samba将SMB通信协议应用到了Linux系统上，就形成了现在的Samba软件。后来微软又把 SMB 改名为 CIFS（Common Internet File System），即公共 In">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/922380.jpg">
+<meta property="article:published_time" content="2021-09-10T02:23:19.000Z">
+<meta property="article:modified_time" content="2021-09-11T11:19:22.557Z">
+<meta property="article:author" content="DropAnn">
+<meta property="article:tag" content="运维">
+<meta property="article:tag" content="环境搭建">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/922380.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dropann.github.io/p/9eb93f46"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Samba服务器',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-11 19:19:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/922380.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DropAnn</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Samba服务器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-10T02:23:19.000Z" title="发表于 2021-09-10 10:23:19">2021-09-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-11T11:19:22.557Z" title="更新于 2021-09-11 19:19:22">2021-09-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Samba服务器"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>Samba是一个能让Linux系统应用Microsoft网络通讯协议的软件，而SMB是<strong>Server Message Block</strong>的缩写，即为服务器消息块 ，SMB主要是作为Microsoft的网络通讯协议，后来Samba将SMB通信协议应用到了Linux系统上，就形成了现在的Samba软件。后来微软又把 SMB 改名为 CIFS（Common Internet File System），即公共 Internet 文件系统，较多的用在了Linux与windows之间的数据共享上面。</p>
+<h2 id="常见应用"><a href="#常见应用" class="headerlink" title="常见应用"></a>常见应用</h2><ul>
+<li>分享档案与打印机服务；</li>
+<li>可以提供用户登入 SAMBA 主机时的身份认证，以提供不同身份者的个别数据；</li>
+<li>可以进行 Windows 网络上的主机名解析 (NetBIOS name)</li>
+<li>可以进行装置的分享 (例如 Zip, CDROM…)</li>
+</ul>
+<h2 id="Samba使用的-damons："><a href="#Samba使用的-damons：" class="headerlink" title="Samba使用的 damons："></a>Samba使用的 damons：</h2><p><strong>NetBIOS 机器间的沟通</strong></p>
+<ul>
+<li>取得对方主机的NetBIOS name 定位该主机所在：</li>
+<li>利用对方给予权限存取可用资源</li>
+</ul>
+<p><strong>SAMBA 使用下面两个服务来控制上面两步骤</strong>，分别是：</p>
+<ul>
+<li>nmbd<ul>
+<li>这个daemon是用来管理工作组，NetBIOS name等等的解析。</li>
+<li>主要利用 UDP 协议开启 port 137 138 来负责名称解析的任务。</li>
+</ul>
+</li>
+<li>smbd<ul>
+<li>这个daemon主要用来管理SAMBA主机分享的目录，档案与打印机等等。</li>
+<li>主要利用可靠的TCP协议来传输数据，开放端口为139.</li>
+</ul>
+</li>
+</ul>
+<p>所以SAMBA每次启动至少都需要有这个daemon，而当我启动了SAMBA之后，主机系统就会<strong>启动137,138 这两个UDP 及139这个TCP</strong>端口。</p>
+<h2 id="Samba联机方式"><a href="#Samba联机方式" class="headerlink" title="Samba联机方式"></a>Samba联机方式</h2><h3 id="peer-peer-对等模式"><a href="#peer-peer-对等模式" class="headerlink" title="peer/peer(对等模式)"></a>peer/peer(对等模式)</h3><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/model_peer.gif" alt="peer/peer 联机的示意图"></p>
+<p>优点：每部计算机均可以独立运作，而不受他人的影响</p>
+<p>缺点：当整个网域内的所有人员都要进行数据分享时，需知道所有计算机里面的账号与密码。</p>
+<p>比较适合</p>
+<ol>
+<li>小型的网域</li>
+<li>没有需要常常进行档案数据分享的网络环境</li>
+<li>每个使用者都独自拥有该计算机的拥有权(该计算机是用户的，而不是公用的！)</li>
+</ol>
+<h3 id="domain-model（主控模式）"><a href="#domain-model（主控模式）" class="headerlink" title="domain model（主控模式）"></a>domain model（主控模式）</h3><p>将所有的账号与密码都放置在一部主控计算机 (Primary Domain Controller, PDC) 上面，在我的网域里面，任何人想要使用任何计算机时，都需要在屏幕前方输入账号与密码，然后通通藉由 PDC 服务器的辨识后，才给予适当的权限。也就是说，不同的身份还具有不一样的计算机资源权限。</p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/model_domain.gif" alt="domain model 联机的示意图"></p>
+<h2 id="Samba服务器搭建"><a href="#Samba服务器搭建" class="headerlink" title="Samba服务器搭建"></a>Samba服务器搭建</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum -y install samba*</span><br><span class="line">systemctl start smb</span><br><span class="line">systemctl enable smb</span><br><span class="line">firewall-cmd --permanent --add-service=samba</span><br><span class="line">getenforce ##可以显示当前SELinux的应用模式，是强制、执行还是停用</span><br><span class="line"><span class="meta">#</span><span class="bash">Permissive</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里的getenforce结果一定要是Permissive 不然<code>selinux</code>可能会阻止了进程</p>
+<p><code>setenforce 0</code> 临时关闭</p>
+<p><code>vim /etc/sysconfig/selinux</code> 永久关闭</p>
+<p><code>\#SELINUX=enforcing</code> </p>
+<p><code>SELINUX=disabled</code></p>
+</blockquote>
+<h3 id="Samba软件"><a href="#Samba软件" class="headerlink" title="Samba软件"></a>Samba软件</h3><p><code>samba-common</code>主要提供samba服务器的设置文件与设置文件语法检验程序testparm</p>
+<p><code>samba-client</code>客户端软件，主要提供linux主机作为客户端时，所需要的工具指令集</p>
+<p><code>samba-swat</code>基于https协议的samba服务器web配置界面</p>
+<p><code>samba</code>服务器端软件，主要提供samba服务器的守护程序，共享文档，日志的轮替，开机默认选项Samba服务器安装完毕，会生成配置文件目录<code>/etc/samba</code>和其它一些samba可执行命令工具，<code>/etc/samba/smb.conf</code>是samba的核心配置文件。</p>
+<h3 id="Samba服务的配置文件"><a href="#Samba服务的配置文件" class="headerlink" title="Samba服务的配置文件"></a>Samba服务的配置文件</h3><p><code>/etc/samba/smb.conf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">[global] #全局参数</span><br><span class="line">        workgroup = SAMBA	#定义工作组</span><br><span class="line">        security = user		#安装验证方式，共4种user、share、server、domain</span><br><span class="line"></span><br><span class="line">        passdb backend = tdbsam	#定义用户后台类型，总共有3种smbpasswd、tdbsam、ldapsam</span><br><span class="line"></span><br><span class="line">        printing = cups		#设置在Samba服务启动时是否共享打印机设备</span><br><span class="line">        printcap name = cups</span><br><span class="line">        load printers = yes</span><br><span class="line">        cups options = raw	#打印机的选项</span><br><span class="line">        </span><br><span class="line">        server string = Samba Server Version %v #服务器提示字符，默认显示samba版本</span><br><span class="line">        log file = /var/log/samba/log.%m #定义日志文件</span><br><span class="line"></span><br><span class="line">[homes]</span><br><span class="line">        comment = Home Directories	#描述信息</span><br><span class="line">        valid users = %S, %D%w%S	#有效访问用户</span><br><span class="line">        browseable = No		#指定共享目录是否可以被浏览</span><br><span class="line">        read only = No		#是否只读</span><br><span class="line">        inherit acls = Yes</span><br><span class="line"></span><br><span class="line">[printers]</span><br><span class="line">        comment = All Printers</span><br><span class="line">        path = /var/tmp		#共享文件的实际路径。</span><br><span class="line">        printable = Yes</span><br><span class="line">        create mask = 0600</span><br><span class="line">        browseable = No</span><br><span class="line"></span><br><span class="line">[print$]</span><br><span class="line">        comment = Printer Drivers</span><br><span class="line">        path = /var/lib/samba/drivers</span><br><span class="line">        write list = @printadmin root</span><br><span class="line">        force group = @printadmin</span><br><span class="line">        create mask = 0664</span><br><span class="line">        directory mask = 0775</span><br><span class="line">        </span><br><span class="line">[common]       #共享名称为common</span><br><span class="line">    comment = Common share</span><br><span class="line">    path = /common        #指定共享目录</span><br><span class="line">    valid users = tom jerry    #有效账户列表</span><br><span class="line">    create mask = 0750        #客户端上传文件的默认权限</span><br><span class="line">    directorymask = 0775       #客户端创建目录的默认权限 </span><br><span class="line">    browseable = yes       #客户端是否对所有人可见    </span><br><span class="line">    writable= no          #是否允许写入</span><br><span class="line">    write list = tom       #写权限账户列表</span><br><span class="line">    admin users = tom       #该共享的管理员，具有完全权限</span><br><span class="line">    invalid users = root bin    #禁止root与bin访问common共享</span><br><span class="line">    guest ok = no       #是否允许匿名访问</span><br></pre></td></tr></table></figure>
+
+<h4 id="主要配置参数-global"><a href="#主要配置参数-global" class="headerlink" title="主要配置参数-[global]"></a>主要配置参数-[global]</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>workgroup = WORKGROUP</td>
+<td>设定Samba Server所要加入的工作组或域</td>
+</tr>
+<tr>
+<td>server string = Samba Server Version %v</td>
+<td>设定 Samba Server 的注释，%v表示显示Samba的版本号</td>
+</tr>
+<tr>
+<td>netbios name = smbserver</td>
+<td>设置Samba Server的NetBIOS名称</td>
+</tr>
+<tr>
+<td>interfaces = lo eth0 192.168.12.2/24 192.168.13.2/24</td>
+<td>说明：设置Samba Server监听哪些网卡，可以写网卡名，也可以写该网卡的IP地址。</td>
+</tr>
+<tr>
+<td>hosts allow = 127. 192.168.1. 192.168.10.1</td>
+<td>表示允许连接到Samba Server的客户端，多个参数以空格隔开，hosts deny 与hosts allow 刚好相反。</td>
+</tr>
+<tr>
+<td>hosts allow=@example.com</td>
+<td>表示允许来自example.com网域的所有计算机连接</td>
+</tr>
+<tr>
+<td>hosts allow=172.17.2.EXCEPT172.17.2.50</td>
+<td>表示容许来自172.17.2.*的主机连接，但排除172.17.2.50</td>
+</tr>
+<tr>
+<td>max connections = 0</td>
+<td>max connections用来指定连接Samba Server的最大连接数目。如果超出连接数目，则新的连接请求将被拒绝。0表示不限制</td>
+</tr>
+<tr>
+<td><strong>log file = /var/log/samba/log.%m</strong></td>
+<td>设置Samba Server日志文件的存储位置以及日志文件名称。在文件名后加个<code>%m</code>（主机名），表示对每台访问Samba Server的机器都单独记录一个日志文件。</td>
+</tr>
+<tr>
+<td>max log size = 50</td>
+<td>设置Samba Server日志文件的最大容量，单位为kB，0代表不限制</td>
+</tr>
+<tr>
+<td><strong>encrypt passwords = yes/no</strong></td>
+<td>是否将认证密码加密</td>
+</tr>
+<tr>
+<td>smb passwd file = /etc/samba/smbpasswd</td>
+<td>如果之前设置的是smbpasswd模式的话</td>
+</tr>
+<tr>
+<td><strong>username map = /etc/samba/smbusers</strong></td>
+<td>用来定义用户名映射，比如可以将root换成administrator、admin等。不过要事先在smbusers文件中定义好。比如：root = administrator admin，这样就可以用administrator或admin这两个用户来代替root登陆Samba Server，更贴近windows用户的习惯。</td>
+</tr>
+<tr>
+<td><strong>guest account = nobody</strong></td>
+<td>用来设置guest用户名。</td>
+</tr>
+<tr>
+<td><strong>load printers = yes/no</strong></td>
+<td>设置是否在启动Samba时就共享打印机。</td>
+</tr>
+<tr>
+<td><strong>printcap name = cups</strong></td>
+<td>设置共享打印机的配置文件。</td>
+</tr>
+<tr>
+<td><strong>printing = cups</strong></td>
+<td>设置Samba共享打印机的类型</td>
+</tr>
+</tbody></table>
+<p><strong>security = user</strong></p>
+<ul>
+<li><code>share</code>不需要提供用户名和口令</li>
+<li><code>user</code>共享目录只能被授权的用户访问，密码要在本Samba Server中建立</li>
+<li><code>server</code>依靠其他Windows NT/2000或Samba Server来验证用户的账号和密码,是一种代理验证。</li>
+<li><code>domain</code>域安全级别,使用主域控制器(PDC)来完成认证</li>
+</ul>
+<p><strong>passdb backend = tdbsam</strong></p>
+<p><code>passdb backend</code>表示用户后台，有三种后台：<code>smbpasswd</code>、<code>tdbsam</code>和<code>ldapsam</code></p>
+<p><code>sam</code>表示<code>security account manager</code>（安全账户管理）</p>
+<p><code>smbpasswd</code>：该方式是使用smb自己的工具smbpasswd来给系统用户（真实用户或者虚拟用户）设置一个Samba密码，客户端就用这个密码来访问Samba的资源。smbpasswd文件默认在<code>/etc/samba</code>目录下，不过有时候要手工建立该文件。</p>
+<p><code>tdbsam</code>：该方式则是使用一个数据库文件来建立用户数据库。数据库文件<code>/etc/samba/passdb.tdb</code>。要建立的<strong>Samba用户必须先是系统用户</strong>。我们也可以使用pdbedit命令来建立Samba账户。</p>
+<p>创建删除Samba账户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pdbedit –a username	#创建</span><br><span class="line">pdbedit –x username</span><br></pre></td></tr></table></figure>
+
+<p>列出Samba用户列表，读取passdb.tdb数据库文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdbedit –L</span><br></pre></td></tr></table></figure>
+
+<p>列出Samba用户列表的详细信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdbedit -Lv</span><br></pre></td></tr></table></figure>
+
+<p>暂停该Samba用户的账号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdbedit -c &quot;[]&quot; -u u</span><br></pre></td></tr></table></figure>
+
+<p>恢复该Samba用户的账号</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pdbedit –c &quot;[]&quot; –u username</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>ldapsam</code>该方式则是基于LDAP的账户管理方式来验证用户。首先要建立LDAP服务，然后设置<code>passdb backend = ldapsam:ldap://LDAP Server</code></p>
+<h4 id="主要配置参数-Share"><a href="#主要配置参数-Share" class="headerlink" title="主要配置参数-[Share]"></a>主要配置参数-[Share]</h4><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>comment = 任意字符串</strong></td>
+<td>comment是对该共享的描述</td>
+</tr>
+<tr>
+<td><strong>path = 共享目录路径</strong></td>
+<td><code>/home/share/</code>下为每个Linux用户以他的用户名建个目录，作为他的共享目录，这样path就可以写成：<code>path = /home/share/%u</code></td>
+</tr>
+<tr>
+<td><code>path= /home/share/%m</code></td>
+<td>为网络上每台可以访问samba的机器都各自建个以它的netbios名的路径</td>
+</tr>
+<tr>
+<td><strong>browseable = yes/no</strong></td>
+<td>指定该共享是否可以浏览</td>
+</tr>
+<tr>
+<td><strong>writable = yes/no</strong></td>
+<td>该共享路径是否可写</td>
+</tr>
+<tr>
+<td><strong>available = yes/no</strong></td>
+<td>指定该共享资源是否可用</td>
+</tr>
+<tr>
+<td><strong>admin users = 该共享的管理者</strong></td>
+<td><code>admin users =david，sandy</code>（多个用户中间用逗号隔开）</td>
+</tr>
+<tr>
+<td><strong>valid users =</strong></td>
+<td><strong>允许访问该共享的用户</strong></td>
+</tr>
+<tr>
+<td><strong>invalid users =</strong></td>
+<td><strong>禁止访问该共享的用户</strong></td>
+</tr>
+<tr>
+<td><strong>write list =</strong></td>
+<td><strong>允许写入该共享的用户</strong></td>
+</tr>
+</tbody></table>
+<h2 id="创建共享目录"><a href="#创建共享目录" class="headerlink" title="创建共享目录"></a>创建共享目录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">useradd -s /sbin/nologin testuserh</span><br><span class="line">useradd -s /sbin/nologin testuserl</span><br><span class="line">pdbedit -a testuserh</span><br><span class="line">pdbedit -a testuserl</span><br><span class="line">pdbedit -L</span><br><span class="line">mkdir /common</span><br><span class="line">echo &quot;hello world!&quot; &gt; /common/test.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[common]</span><br><span class="line">        path = /common</span><br><span class="line">        public = yes</span><br><span class="line">        browseable = yes</span><br><span class="line">        write list = testuserh</span><br></pre></td></tr></table></figure>
+
+<h2 id="linux挂载smb共享目录"><a href="#linux挂载smb共享目录" class="headerlink" title="linux挂载smb共享目录"></a>linux挂载smb共享目录</h2><p>安装：<code>yum -y install samba-client cifs-utils</code></p>
+<p>匿名查看smb服务器共享的目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbclient -L //192.168.77.199 -N</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210910161807563.png" alt="image-20210910161807563"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smbclient //192.168.201.147/common -U testuserh</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210911181952978.png" alt="image-20210911181952978"></p>
+<h2 id="NT-STATUS-ACCESS-DENIED-opening-remote-file-xxx-exe"><a href="#NT-STATUS-ACCESS-DENIED-opening-remote-file-xxx-exe" class="headerlink" title="NT_STATUS_ACCESS_DENIED opening remote file \xxx.exe"></a>NT_STATUS_ACCESS_DENIED opening remote file \xxx.exe</h2><mark class="hl-label pink">重要！！！</mark>  要想使用户可以上传和删除文件，除了系统当中的定义的允许写操作外，目录文件系统也要有写权限才可以
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">setfacl -m u:testuserh:rwx /common</span><br><span class="line">[root@localhost ~]# getfacl /common/</span><br><span class="line">getfacl: Removing leading &#x27;/&#x27; from absolute path names</span><br><span class="line"><span class="meta">#</span><span class="bash"> file: common/</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> owner: root</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> group: root</span></span><br><span class="line">user::rwx</span><br><span class="line">user:testuserh:rwx</span><br><span class="line">group::r-x</span><br><span class="line">mask::rwx</span><br><span class="line">other::r-x</span><br><span class="line">netstat –na |grep ESTABLISHED</span><br></pre></td></tr></table></figure>
+
+<h2 id="日志分析"><a href="#日志分析" class="headerlink" title="日志分析"></a>日志分析</h2><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a target="_blank" rel="noopener" href="https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html#LOGLEVEL">配置</a></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Default: log level = 0</span><br><span class="line"></span><br><span class="line">Example: log level = 3 passdb:5 auth:10 winbind:2</span><br><span class="line"></span><br><span class="line">Example: log level = 1 full_audit:1@/var/log/audit.log winbind:2</span><br><span class="line"></span><br><span class="line">log level = 1 auth:3 #以下参考这个配置</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">all。该参数是可选的：如果您不指定额外的关键字，假定使用 all。</span><br><span class="line">tdb。与不重要的数据库相关的日志消息，这是 Samba 使用的键值存储。</span><br><span class="line">printdrivers。打印机驱动程序管理例程。</span><br><span class="line">lanman。 NT LAN Manager 调试。</span><br><span class="line">smb。 SMB 协议调试。</span><br><span class="line">rpc_parse。远程过程调用（RPCs）解析。</span><br><span class="line">rpc_srv。服务器端 RPCs。</span><br><span class="line">rpc_cli。客户端 RPCs。</span><br><span class="line">passdb。在 Samba 主机上存储密码的旧有方式。</span><br><span class="line">sam。本地 Samba 帐户数据库。</span><br><span class="line">auth。Samba 内与用户身份验证相关的各个模块。</span><br><span class="line">winbind。用于允许Microsoft用户透明地登录到UNIX系统的组件。</span><br><span class="line">vfs。为 Virtual File System 模块调试消息，允许您通过可插入模块添加功能到Samba。</span><br><span class="line">idmap。在UNIX 用户IDs与Microsoft安全标识符之间映射身份。</span><br><span class="line">quota。与配额处理相关的消息，同时由Microsoft Windows NT策略和UNIX文件系统处理。</span><br><span class="line">acls。访问控制列表处理。</span><br><span class="line">locking。文件锁定状态和错误。</span><br><span class="line">msdfs。与 Samba 的分布式文件系统支持相关的日志消息。</span><br><span class="line">dmapi。数据管理应用程序编程接口（API）功能。必须使用第三方DMAPI实现编译Samba来使用该功能。</span><br><span class="line">registry。Windows 注册表的模仿。</span><br></pre></td></tr></table></figure>
+
+<p>成功登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2021/09/11 03:58:39.242932,  2] ../../source3/auth/auth.c:329(auth_check_ntlm_password)</span><br><span class="line">  check_ntlm_password:  authentication for user [testuserh] -&gt; [testuserh] -&gt; [testuserh] succeeded</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210911190147619.png" alt="image-20210911190147619"></p>
+<p>失败登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2021/09/11 04:05:06.906891,  3] ../../auth/gensec/spnego.c:1445(gensec_spnego_server_negTokenTarg_step)</span><br><span class="line">  gensec_spnego_server_negTokenTarg_step: SPNEGO(ntlmssp) login failed: NT_STATUS_WRONG_PASSWORD</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210911190645705.png" alt="image-20210911190645705"></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_server/0370samba_1.php">第十六章、文件服务器之二： SAMBA 服务器</a></p>
+<p><a target="_blank" rel="noopener" href="https://cshihong.github.io/2018/10/18/Samba%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/">Samba服务器搭建与配置</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_35850783/article/details/100776590">samba启动失败</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.51cto.com/1992tao/1863682">文件共享服务—Samba</a></p>
+<p><a target="_blank" rel="noopener" href="https://huiliu.github.io/2016/01/19/samba_basic.html">Samba</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">DropAnn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dropann.github.io/p/9eb93f46.html">https://dropann.github.io/p/9eb93f46.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dropann.github.io" target="_blank">DropAnn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%BF%90%E7%BB%B4/">运维</a><a class="post-meta__tags" href="/tags/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">环境搭建</a></div><div class="post_share"><div class="social-share" data-image="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/922380.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/p/60fd7a5a.html"><img class="next-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/935082.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">php命令执行漏洞</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/p/92957adc.html" title="FTP服务器"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1117825.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-07</div><div class="title">FTP服务器</div></div></a></div><div><a href="/p/79dc0da1.html" title="Linux初始化"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/793493.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-11</div><div class="title">Linux初始化</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">DropAnn</div><div class="author-info__description">在研发和安服仔之间徘徊</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">26</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">25</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DropAnn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DropAnn" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dropann@hotmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">常见应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Samba%E4%BD%BF%E7%94%A8%E7%9A%84-damons%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">Samba使用的 damons：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Samba%E8%81%94%E6%9C%BA%E6%96%B9%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">Samba联机方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#peer-peer-%E5%AF%B9%E7%AD%89%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.1.</span> <span class="toc-text">peer&#x2F;peer(对等模式)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#domain-model%EF%BC%88%E4%B8%BB%E6%8E%A7%E6%A8%A1%E5%BC%8F%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">domain model（主控模式）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Samba%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA"><span class="toc-number">4.</span> <span class="toc-text">Samba服务器搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Samba%E8%BD%AF%E4%BB%B6"><span class="toc-number">4.1.</span> <span class="toc-text">Samba软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Samba%E6%9C%8D%E5%8A%A1%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">4.2.</span> <span class="toc-text">Samba服务的配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0-global"><span class="toc-number">4.2.1.</span> <span class="toc-text">主要配置参数-[global]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0-Share"><span class="toc-number">4.2.2.</span> <span class="toc-text">主要配置参数-[Share]</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95"><span class="toc-number">5.</span> <span class="toc-text">创建共享目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux%E6%8C%82%E8%BD%BDsmb%E5%85%B1%E4%BA%AB%E7%9B%AE%E5%BD%95"><span class="toc-number">6.</span> <span class="toc-text">linux挂载smb共享目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NT-STATUS-ACCESS-DENIED-opening-remote-file-xxx-exe"><span class="toc-number">7.</span> <span class="toc-text">NT_STATUS_ACCESS_DENIED opening remote file \xxx.exe</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90"><span class="toc-number">8.</span> <span class="toc-text">日志分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">8.1.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">9.</span> <span class="toc-text">参考链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/9eb93f46.html" title="Samba服务器">Samba服务器</a><time datetime="2021-09-10T02:23:19.000Z" title="发表于 2021-09-10 10:23:19">2021-09-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/60fd7a5a.html" title="php命令执行漏洞">php命令执行漏洞</a><time datetime="2021-09-09T11:11:33.000Z" title="发表于 2021-09-09 19:11:33">2021-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/730fc708.html" title="mt_srand()种子和mt_rand()随机数">mt_srand()种子和mt_rand()随机数</a><time datetime="2021-09-09T02:58:00.000Z" title="发表于 2021-09-09 10:58:00">2021-09-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/75bed629.html" title="主机暴力破解日志特征">主机暴力破解日志特征</a><time datetime="2021-09-08T06:34:47.000Z" title="发表于 2021-09-08 14:34:47">2021-09-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/92957adc.html" title="FTP服务器">FTP服务器</a><time datetime="2021-09-07T06:48:47.000Z" title="发表于 2021-09-07 14:48:47">2021-09-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By DropAnn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
