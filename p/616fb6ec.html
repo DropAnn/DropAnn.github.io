@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>volatility | DropAnn</title><meta name="keywords" content="安全工具"><meta name="author" content="DropAnn"><meta name="copyright" content="DropAnn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="安装https:&#x2F;&#x2F;github.com&#x2F;volatilityfoundation&#x2F;volatility&#x2F;releases https:&#x2F;&#x2F;voltraining.wixsite.com&#x2F;volatilityfoundation&#x2F;releases volatility_2.6_win64_standalone.zip volatility_2.6_lin64_standalone.zip 安装方式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="volatility">
+<meta property="og:url" content="https://dropann.github.io/p/616fb6ec.html">
+<meta property="og:site_name" content="DropAnn">
+<meta property="og:description" content="安装https:&#x2F;&#x2F;github.com&#x2F;volatilityfoundation&#x2F;volatility&#x2F;releases https:&#x2F;&#x2F;voltraining.wixsite.com&#x2F;volatilityfoundation&#x2F;releases volatility_2.6_win64_standalone.zip volatility_2.6_lin64_standalone.zip 安装方式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg">
+<meta property="article:published_time" content="2021-09-29T05:45:27.000Z">
+<meta property="article:modified_time" content="2021-09-29T13:19:38.810Z">
+<meta property="article:author" content="DropAnn">
+<meta property="article:tag" content="安全工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dropann.github.io/p/616fb6ec"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'volatility',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-29 21:19:38'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DropAnn</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">volatility</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-09-29T05:45:27.000Z" title="发表于 2021-09-29 13:45:27">2021-09-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-29T13:19:38.810Z" title="更新于 2021-09-29 21:19:38">2021-09-29</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">981</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="volatility"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><a target="_blank" rel="noopener" href="https://github.com/volatilityfoundation/volatility/releases">https://github.com/volatilityfoundation/volatility/releases</a></p>
+<p><a target="_blank" rel="noopener" href="https://voltraining.wixsite.com/volatilityfoundation/releases">https://voltraining.wixsite.com/volatilityfoundation/releases</a></p>
+<p>volatility_2.6_win64_standalone.zip</p>
+<p>volatility_2.6_lin64_standalone.zip</p>
+<p>安装方式有很多</p>
+<h3 id="kali2021"><a href="#kali2021" class="headerlink" title="kali2021"></a>kali2021</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/volatilityfoundation/volatility</span><br><span class="line">python setup.py build</span><br><span class="line">python setup.py install</span><br><span class="line">chmod +x vol.py</span><br><span class="line"></span><br><span class="line">大坑重灾区</span><br><span class="line">pip install yara-python #https://github.com/VirusTotal/yara-python</span><br><span class="line">pip install distorm3 #这个不好装</span><br><span class="line">pip install pycrypto #这个也不好装</span><br><span class="line">pip install openpyxl </span><br><span class="line">pip install Pillow</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621242358914-298752d4-d8f8-4639-afb5-76fabd8de1bc.png" alt="img"></p>
+<blockquote>
+<p>pip install –upgrade setuptools</p>
+</blockquote>
+<p>中间还有很多坑</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y python2.7-dev</span><br></pre></td></tr></table></figure>
+
+<p>确定是<code>yara</code>的问题了</p>
+<p>参考链接<a target="_blank" rel="noopener" href="https://yara.readthedocs.io/en/v4.1.0/gettingstarted.html">https://yara.readthedocs.io/en/v4.1.0/gettingstarted.html</a></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2185076/1621245031735-bda26bdd-60b6-4990-92c7-d6b34c97270a.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/lib/python2.7/dist-packages/usr/lib/libyara.so /usr/lib/libyara.so</span><br></pre></td></tr></table></figure>
+
+<p>不报错了</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2021/png/2185076/1621245184755-4a1da13c-3e9e-4cff-8364-fa7a15e6557e.png" alt="img"></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>需要识别到版本号，版本号较多。</p>
+<h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f &lt;文件名&gt; --profile=&lt;配置文件&gt; &lt;插件&gt; [插件参数]</span><br><span class="line">python vol.py -f &lt;文件名&gt; --profile=&lt;配置文件&gt; &lt;插件&gt; [插件参数]</span><br></pre></td></tr></table></figure>
+
+<h3 id="判断未知内存镜像系统版本信息-imageinfo-kdbgscan"><a href="#判断未知内存镜像系统版本信息-imageinfo-kdbgscan" class="headerlink" title="判断未知内存镜像系统版本信息-imageinfo/kdbgscan"></a>判断未知内存镜像系统版本信息-imageinfo/kdbgscan</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/Desktop/memory.img imageinfo</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>imageinfo  用于标识操作系统、service pack和硬件体系结构（32位或64位）；可能有多个建议的配置文件，必须选择正确的配置文件</p>
+</blockquote>
+<h3 id="列出转储时运行的进程的详细信息-pslist-pstree-psscan"><a href="#列出转储时运行的进程的详细信息-pslist-pstree-psscan" class="headerlink" title="列出转储时运行的进程的详细信息-pslist/pstree/psscan"></a>列出转储时运行的进程的详细信息-pslist/pstree/psscan</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f .\memdump.mem --profile=Win7SP1x86_23418 pslist &gt;pslist.txt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当内容比较多时候,<code>&gt;pslist.txt</code>导出文本进一步分析查看</p>
+<p>pslist无法显示隐藏/终止进程，解决这个问题可以使用psscan</p>
+</blockquote>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210929142622740.png" alt="image-20210929142622740"></p>
+<h3 id="查看隐藏进程-psxview"><a href="#查看隐藏进程-psxview" class="headerlink" title="查看隐藏进程-psxview"></a>查看隐藏进程-psxview</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/Desktop/memory.img --profile=Win2003SP1x86 psxview</span><br></pre></td></tr></table></figure>
+
+<h3 id="网络连接情况-netscan"><a href="#网络连接情况-netscan" class="headerlink" title="网络连接情况-netscan"></a>网络连接情况-netscan</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f xxx.mem --profile=Win2003SP1x86 netscan</span><br></pre></td></tr></table></figure>
+
+<h3 id="cmd的历史命令-cmdscan"><a href="#cmd的历史命令-cmdscan" class="headerlink" title="cmd的历史命令-cmdscan"></a>cmd的历史命令-cmdscan</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/Desktop/memory.img --profile=Win2003SP1x86 cmdscan</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621260906140-2bac6047-05c2-4cfa-8c0a-3f733106d1a7.png" alt="img"></p>
+<h3 id="扫描当前打开的文件-filescan"><a href="#扫描当前打开的文件-filescan" class="headerlink" title="扫描当前打开的文件-filescan"></a>扫描当前打开的文件-filescan</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/Desktop/memory.img --profile=Win2003SP1x86 filescan | grep &quot;flag&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621261465665-64b38d3d-5eba-4336-aa16-b8ba1e647f87.png" alt="img"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f file_patched_tjctf.dmp --profile=Win7SP1x86_23418 filescan  |  grep Downloads</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>找下载的文件夹了，一般windows下载的内容都放在 Download 文件夹中</p>
+</blockquote>
+<h3 id="内存中隐藏或注入代码-malfind"><a href="#内存中隐藏或注入代码-malfind" class="headerlink" title="内存中隐藏或注入代码-malfind"></a>内存中隐藏或注入代码-malfind</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/Desktop/memory.img --profile=Win2003SP1x86 malfind</span><br></pre></td></tr></table></figure>
+
+<h3 id="进程装载的动态链接库-dlllist"><a href="#进程装载的动态链接库-dlllist" class="headerlink" title="进程装载的动态链接库-dlllist"></a>进程装载的动态链接库-dlllist</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f .\memdump.mem --profile=Win7SP1x86_23418 dlllist &gt;dlllist.txt</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其显示列表主要包括加载的动态链接库文件的基地址、文件大小以及文件所在路径</p>
+</blockquote>
+<h3 id="缓存在内存的注册表-hivelist"><a href="#缓存在内存的注册表-hivelist" class="headerlink" title="缓存在内存的注册表-hivelist"></a>缓存在内存的注册表-hivelist</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/wtl/mem.vmem --profile=WinXPSP2x86 hivelist</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621566147801-14dafab3-05ce-4f71-b15c-2dde927e9f01.png" alt="img"></p>
+<h3 id="打印注册表数据-hivedump"><a href="#打印注册表数据-hivedump" class="headerlink" title="打印注册表数据-hivedump"></a>打印注册表数据-hivedump</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/wtl/mem.vmem --profile=WinXPSP2x86 hivedump -o 0xe146c398</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621566422727-46e1ee24-2dc5-4076-a3ed-badee02b53e4.png" alt="img"></p>
+<h3 id="内存中的系统密码-hashdump"><a href="#内存中的系统密码-hashdump" class="headerlink" title="内存中的系统密码-hashdump"></a>内存中的系统密码-hashdump</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f .\memdump.mem --profile=Win7SP1x86_23418 hashdump</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210929192633385.png" alt="image-20210929192633385"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f name --profile=WinXPSP2x86 hashdump -y （注册表 system 的 virtual 地址 ）-s （SAM 的 virtual 地址）</span><br><span class="line">python vol.py -f name --profile=WinXPSP2x86 hashdump -y 0xe1035b60 -s 0xe16aab60</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621579773461-e80c098a-7777-43b1-b3ed-d67becebe97a.png" alt="img"></p>
+<h3 id="程序运行信息-userassist"><a href="#程序运行信息-userassist" class="headerlink" title="程序运行信息-userassist"></a>程序运行信息-userassist</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f .\memdump.mem --profile=Win7SP1x86_23418 userassist</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210929192842966.png" alt="image-20210929192842966"></p>
+<blockquote>
+<p>包含正在运行的程序有哪些，运行过多少次，最后一次运行的时间等信息</p>
+</blockquote>
+<h3 id="查看SID-getsids"><a href="#查看SID-getsids" class="headerlink" title="查看SID-getsids"></a>查看SID-getsids</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f .\memdump.mem --profile=Win7SP1x86_23418 getsids</span><br></pre></td></tr></table></figure>
+
+<h3 id="寻找可能注入到各种进程中的恶意软件-malfind"><a href="#寻找可能注入到各种进程中的恶意软件-malfind" class="headerlink" title="寻找可能注入到各种进程中的恶意软件-malfind"></a>寻找可能注入到各种进程中的恶意软件-malfind</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f .\memdump.mem --profile=Win7SP1x86_23418 malfind -p 3088 #-p指定进程</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210929194837418.png" alt="image-20210929194837418"></p>
+<h3 id="获取SAM表中用户-printkey"><a href="#获取SAM表中用户-printkey" class="headerlink" title="获取SAM表中用户-printkey"></a>获取SAM表中用户-printkey</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f .\memdump.mem --profile=Win7SP1x86_23418 printkey -K &quot;SAM\Domains\Account\Users\Names&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210929195635140.png" alt="image-20210929195635140"></p>
+<h3 id="最后登录系统的账户-printkey"><a href="#最后登录系统的账户-printkey" class="headerlink" title="最后登录系统的账户-printkey"></a>最后登录系统的账户-printkey</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f mem.vmem --profile=WinXPSP2x86 printkey -K &quot;SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogin&quot; </span><br></pre></td></tr></table></figure>
+
+<h3 id="时间轴线-timeliner"><a href="#时间轴线-timeliner" class="headerlink" title="时间轴线-timeliner"></a>时间轴线-timeliner</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f name --profile=WinXPSP2x86 timeliner</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>多个位置来收集系统的活动信息 </p>
+</blockquote>
+<h3 id="查看windows服务-svcscan"><a href="#查看windows服务-svcscan" class="headerlink" title="查看windows服务-svcscan"></a>查看windows服务-svcscan</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f memory.img --profile=Win2003SP1x86 svcscan</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210929211905541.png" alt="image-20210929211905541"></p>
+<h3 id="保存内存中的某个进程-mem"><a href="#保存内存中的某个进程-mem" class="headerlink" title="保存内存中的某个进程-mem"></a>保存内存中的某个进程-mem</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f mem.vmem --profile=WinXPSP2x86 mem -p 1180 -D E:\111</span><br></pre></td></tr></table></figure>
+
+<h3 id="提取内存中的注册表信息-dumpregistry"><a href="#提取内存中的注册表信息-dumpregistry" class="headerlink" title="提取内存中的注册表信息-dumpregistry"></a>提取内存中的注册表信息-dumpregistry</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\volatility.exe -f .\memdump.mem --profile=Win7SP1x86_23418 dumpregistry  --dump-dir=D:\text\</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>dumpregistry –dump-dir 提取内存注册表的目录路径，test先创建，最好不要在C盘</p>
+</blockquote>
+<h3 id="解析MFT记录、导出MFT记录-mftparser"><a href="#解析MFT记录、导出MFT记录-mftparser" class="headerlink" title="解析MFT记录、导出MFT记录-mftparser"></a>解析MFT记录、导出MFT记录-mftparser</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">volatility -f Win7_SP1_x86.vmem --profile=Win7SP1x86 mftparser</span><br><span class="line">volatility -f Win7_SP1_x86.vmem --profile=Win7SP1x86 mftparser --output-file=mftverbose.txt -D mftoutput</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取TrueCrypt秘钥信息-truecryptmaster"><a href="#获取TrueCrypt秘钥信息-truecryptmaster" class="headerlink" title="获取TrueCrypt秘钥信息-truecryptmaster"></a>获取TrueCrypt秘钥信息-truecryptmaster</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Volatility -f Win7_SP1_x86.vmem --profile=Win7SP1x86 truecryptmaster</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取TrueCrypt密码信息-truecryptpassphrase"><a href="#获取TrueCrypt密码信息-truecryptpassphrase" class="headerlink" title="获取TrueCrypt密码信息-truecryptpassphrase"></a>获取TrueCrypt密码信息-truecryptpassphrase</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility -f Win7_SP1_x86.vmem --profile=Win7SP1x86 truecryptpassphrase</span><br></pre></td></tr></table></figure>
+
+<h3 id="提取进程PID文件-procdump"><a href="#提取进程PID文件-procdump" class="headerlink" title="提取进程PID文件-procdump"></a>提取进程PID文件-procdump</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/Desktop/memory.img --profile=Win2003SP1x86 procdump -p 1848 -D ./</span><br></pre></td></tr></table></figure>
+
+<h4 id="dump文件-dumpfiles"><a href="#dump文件-dumpfiles" class="headerlink" title="dump文件-dumpfiles"></a>dump文件-dumpfiles</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/Desktop/memory.img --profile=Win2003SP1x86 dumpfiles -Q 0x000000000484f900 --dump-dir=./</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621263396438-2e0d552d-9911-42ae-8667-a2bf7bb256b0.png" alt="img"></p>
+<blockquote>
+<p>先filescan</p>
+</blockquote>
+<h4 id="导出dmp文件-memdump"><a href="#导出dmp文件-memdump" class="headerlink" title="导出dmp文件-memdump"></a>导出dmp文件-memdump</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -f ~/wtl/mem.vmem --profile=WinXPSP2x86 psscan</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621580643912-3bf7b029-326c-44fe-9ecf-696646029882.png" alt="img"></p>
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/1621580758835-f2e4a842-e56c-4650-808c-73bf6f1367cd.png" alt="img"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">DropAnn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dropann.github.io/p/616fb6ec.html">https://dropann.github.io/p/616fb6ec.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dropann.github.io" target="_blank">DropAnn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/">安全工具</a></div><div class="post_share"><div class="social-share" data-image="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/p/faa03718.html"><img class="next-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">ATT&amp;CK</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/p/34660774.html" title="AWVS扫描器"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210822210641722.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-11</div><div class="title">AWVS扫描器</div></div></a></div><div><a href="/p/56e7c490.html" title="dirsearch"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210830000953882.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-22</div><div class="title">dirsearch</div></div></a></div><div><a href="/p/df53a981.html" title="暴力破解常用工具"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210829164700143.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-06</div><div class="title">暴力破解常用工具</div></div></a></div><div><a href="/p/d0f422c5.html" title="Hydra"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210829164700143.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-07</div><div class="title">Hydra</div></div></a></div><div><a href="/p/b76dfd1e.html" title="Mimikatz"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1098373.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-15</div><div class="title">Mimikatz</div></div></a></div><div><a href="/p/366383bb.html" title="Nmap"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210829164700143.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-04</div><div class="title">Nmap</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">DropAnn</div><div class="author-info__description">在研发和安服仔之间徘徊</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">34</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">23</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DropAnn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DropAnn" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dropann@hotmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#kali2021"><span class="toc-number">1.1.</span> <span class="toc-text">kali2021</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E6%9C%AA%E7%9F%A5%E5%86%85%E5%AD%98%E9%95%9C%E5%83%8F%E7%B3%BB%E7%BB%9F%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF-imageinfo-kdbgscan"><span class="toc-number">2.2.</span> <span class="toc-text">判断未知内存镜像系统版本信息-imageinfo&#x2F;kdbgscan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%97%E5%87%BA%E8%BD%AC%E5%82%A8%E6%97%B6%E8%BF%90%E8%A1%8C%E7%9A%84%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF-pslist-pstree-psscan"><span class="toc-number">2.3.</span> <span class="toc-text">列出转储时运行的进程的详细信息-pslist&#x2F;pstree&#x2F;psscan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E9%9A%90%E8%97%8F%E8%BF%9B%E7%A8%8B-psxview"><span class="toc-number">2.4.</span> <span class="toc-text">查看隐藏进程-psxview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E6%83%85%E5%86%B5-netscan"><span class="toc-number">2.5.</span> <span class="toc-text">网络连接情况-netscan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cmd%E7%9A%84%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4-cmdscan"><span class="toc-number">2.6.</span> <span class="toc-text">cmd的历史命令-cmdscan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%AB%E6%8F%8F%E5%BD%93%E5%89%8D%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6-filescan"><span class="toc-number">2.7.</span> <span class="toc-text">扫描当前打开的文件-filescan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%B8%AD%E9%9A%90%E8%97%8F%E6%88%96%E6%B3%A8%E5%85%A5%E4%BB%A3%E7%A0%81-malfind"><span class="toc-number">2.8.</span> <span class="toc-text">内存中隐藏或注入代码-malfind</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E8%A3%85%E8%BD%BD%E7%9A%84%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93-dlllist"><span class="toc-number">2.9.</span> <span class="toc-text">进程装载的动态链接库-dlllist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%9C%A8%E5%86%85%E5%AD%98%E7%9A%84%E6%B3%A8%E5%86%8C%E8%A1%A8-hivelist"><span class="toc-number">2.10.</span> <span class="toc-text">缓存在内存的注册表-hivelist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8D%B0%E6%B3%A8%E5%86%8C%E8%A1%A8%E6%95%B0%E6%8D%AE-hivedump"><span class="toc-number">2.11.</span> <span class="toc-text">打印注册表数据-hivedump</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E5%AF%86%E7%A0%81-hashdump"><span class="toc-number">2.12.</span> <span class="toc-text">内存中的系统密码-hashdump</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E4%BF%A1%E6%81%AF-userassist"><span class="toc-number">2.13.</span> <span class="toc-text">程序运行信息-userassist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8BSID-getsids"><span class="toc-number">2.14.</span> <span class="toc-text">查看SID-getsids</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BB%E6%89%BE%E5%8F%AF%E8%83%BD%E6%B3%A8%E5%85%A5%E5%88%B0%E5%90%84%E7%A7%8D%E8%BF%9B%E7%A8%8B%E4%B8%AD%E7%9A%84%E6%81%B6%E6%84%8F%E8%BD%AF%E4%BB%B6-malfind"><span class="toc-number">2.15.</span> <span class="toc-text">寻找可能注入到各种进程中的恶意软件-malfind</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96SAM%E8%A1%A8%E4%B8%AD%E7%94%A8%E6%88%B7-printkey"><span class="toc-number">2.16.</span> <span class="toc-text">获取SAM表中用户-printkey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E7%99%BB%E5%BD%95%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%B4%A6%E6%88%B7-printkey"><span class="toc-number">2.17.</span> <span class="toc-text">最后登录系统的账户-printkey</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E8%BD%B4%E7%BA%BF-timeliner"><span class="toc-number">2.18.</span> <span class="toc-text">时间轴线-timeliner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8Bwindows%E6%9C%8D%E5%8A%A1-svcscan"><span class="toc-number">2.19.</span> <span class="toc-text">查看windows服务-svcscan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%9D%E5%AD%98%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E6%9F%90%E4%B8%AA%E8%BF%9B%E7%A8%8B-mem"><span class="toc-number">2.20.</span> <span class="toc-text">保存内存中的某个进程-mem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E6%B3%A8%E5%86%8C%E8%A1%A8%E4%BF%A1%E6%81%AF-dumpregistry"><span class="toc-number">2.21.</span> <span class="toc-text">提取内存中的注册表信息-dumpregistry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90MFT%E8%AE%B0%E5%BD%95%E3%80%81%E5%AF%BC%E5%87%BAMFT%E8%AE%B0%E5%BD%95-mftparser"><span class="toc-number">2.22.</span> <span class="toc-text">解析MFT记录、导出MFT记录-mftparser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96TrueCrypt%E7%A7%98%E9%92%A5%E4%BF%A1%E6%81%AF-truecryptmaster"><span class="toc-number">2.23.</span> <span class="toc-text">获取TrueCrypt秘钥信息-truecryptmaster</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96TrueCrypt%E5%AF%86%E7%A0%81%E4%BF%A1%E6%81%AF-truecryptpassphrase"><span class="toc-number">2.24.</span> <span class="toc-text">获取TrueCrypt密码信息-truecryptpassphrase</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E5%8F%96%E8%BF%9B%E7%A8%8BPID%E6%96%87%E4%BB%B6-procdump"><span class="toc-number">2.25.</span> <span class="toc-text">提取进程PID文件-procdump</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dump%E6%96%87%E4%BB%B6-dumpfiles"><span class="toc-number">2.25.1.</span> <span class="toc-text">dump文件-dumpfiles</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%BC%E5%87%BAdmp%E6%96%87%E4%BB%B6-memdump"><span class="toc-number">2.25.2.</span> <span class="toc-text">导出dmp文件-memdump</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/616fb6ec.html" title="volatility">volatility</a><time datetime="2021-09-29T05:45:27.000Z" title="发表于 2021-09-29 13:45:27">2021-09-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/faa03718.html" title="ATT&amp;CK">ATT&amp;CK</a><time datetime="2021-09-26T07:42:39.000Z" title="发表于 2021-09-26 15:42:39">2021-09-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/102b9580.html" title="php代码审计学习">php代码审计学习</a><time datetime="2021-09-17T01:14:42.000Z" title="发表于 2021-09-17 09:14:42">2021-09-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/b76dfd1e.html" title="Mimikatz">Mimikatz</a><time datetime="2021-09-15T09:24:57.000Z" title="发表于 2021-09-15 17:24:57">2021-09-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/47eeacbc.html" title="CVE-2017-16995">CVE-2017-16995</a><time datetime="2021-09-15T01:34:07.000Z" title="发表于 2021-09-15 09:34:07">2021-09-15</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By DropAnn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
