@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>勒索病毒应急处置 | DropAnn</title><meta name="keywords" content="病毒"><meta name="author" content="DropAnn"><meta name="copyright" content="DropAnn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="勒索病毒，是一种特殊的恶意软件，又被人归类为“阻断访问式攻击”（denial-of-access attack），其与其他病毒最大的不同在于手法以及中毒方式。其中一种勒索软件仅是单纯地将受害者的电脑锁起来，而另一种则系统性地加密受害者硬盘上的文件。所有的勒索软件都会要求受害者缴纳赎金以取回对电脑的控制权，或是取回受害者根本无从自行获取的解密密钥以便解密文件。勒索软件通常透过木马病毒的形式传播，将自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="勒索病毒应急处置">
+<meta property="og:url" content="https://dropann.github.io/p/c2567ef7.html">
+<meta property="og:site_name" content="DropAnn">
+<meta property="og:description" content="勒索病毒，是一种特殊的恶意软件，又被人归类为“阻断访问式攻击”（denial-of-access attack），其与其他病毒最大的不同在于手法以及中毒方式。其中一种勒索软件仅是单纯地将受害者的电脑锁起来，而另一种则系统性地加密受害者硬盘上的文件。所有的勒索软件都会要求受害者缴纳赎金以取回对电脑的控制权，或是取回受害者根本无从自行获取的解密密钥以便解密文件。勒索软件通常透过木马病毒的形式传播，将自">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1098373.jpg">
+<meta property="article:published_time" content="2021-11-18T05:57:29.000Z">
+<meta property="article:modified_time" content="2021-11-18T13:03:32.623Z">
+<meta property="article:author" content="DropAnn">
+<meta property="article:tag" content="病毒">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1098373.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dropann.github.io/p/c2567ef7"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '勒索病毒应急处置',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-18 21:03:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1098373.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DropAnn</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">勒索病毒应急处置</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-18T05:57:29.000Z" title="发表于 2021-11-18 13:57:29">2021-11-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-18T13:03:32.623Z" title="更新于 2021-11-18 21:03:32">2021-11-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">应急响应</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">904</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="勒索病毒应急处置"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>勒索病毒，是一种特殊的恶意软件，又被人归类为“阻断访问式攻击”（denial-of-access attack），其与其他病毒最大的不同在于手法以及中毒方式。其中一种勒索软件仅是单纯地将受害者的电脑锁起来，而另一种则系统性地加密受害者硬盘上的文件。所有的勒索软件都会要求受害者缴纳赎金以取回对电脑的控制权，或是取回受害者根本无从自行获取的解密密钥以便解密文件。勒索软件通常透过木马病毒的形式传播，将自身为掩盖为看似无害的文件，通常会通过假冒成普通的电子邮件等社会工程学方法欺骗受害者点击链接下载，但也有可能与许多其他蠕虫病毒一样利用软件的漏洞在联网的电脑间传播。本文重点放在一线人员如何处置勒索病毒，溯源攻击方法。</p>
+<h1 id="常规处置方法"><a href="#常规处置方法" class="headerlink" title="常规处置方法"></a>常规处置方法</h1><p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20211118192242334.png" alt="image-20211118192242334"></p>
+<h2 id="错误处置："><a href="#错误处置：" class="headerlink" title="错误处置："></a>错误处置：</h2><ol>
+<li>使用u盘，硬盘等移动存储设备，挂载共享盘等存储服务。</li>
+<li>多次对被勒索后的文件进行解密操作，可能破坏原始文件降低解密的可能性。</li>
+</ol>
+<h2 id="隔离被感染主机-服务器"><a href="#隔离被感染主机-服务器" class="headerlink" title="隔离被感染主机/服务器"></a>隔离被感染主机/服务器</h2><ol>
+<li>断网，断电（断网&gt;断电）</li>
+<li>对网络资源访问控制权限做严格认证和控制</li>
+</ol>
+<h1 id="确认勒索病毒种类"><a href="#确认勒索病毒种类" class="headerlink" title="确认勒索病毒种类"></a>确认勒索病毒种类</h1><h2 id="确认勒索病毒名称，家族查看是否有解密的可能性"><a href="#确认勒索病毒名称，家族查看是否有解密的可能性" class="headerlink" title="确认勒索病毒名称，家族查看是否有解密的可能性"></a>确认勒索病毒名称，家族查看是否有解密的可能性</h2><h3 id="病毒查询网站"><a href="#病毒查询网站" class="headerlink" title="病毒查询网站"></a>病毒查询网站</h3><p><a target="_blank" rel="noopener" href="https://guanjia.qq.com/pr/ls/">腾讯勒索病毒搜索引擎</a></p>
+<p><a target="_blank" rel="noopener" href="https://lesuobingdu.360.cn/">360勒索病毒解密</a></p>
+<p><a target="_blank" rel="noopener" href="https://lesuobingdu.qianxin.com/">奇安信勒索病毒搜索引擎</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nomoreransom.org/crypto-sheriff.php?lang=zh">nomoreransom-解码刑警</a></p>
+<p><a target="_blank" rel="noopener" href="https://lesuo.venuseye.com.cn/">VenusEye威胁情报中心-勒索病毒搜索引擎</a></p>
+<p><a target="_blank" rel="noopener" href="https://id-ransomware.malwarehunterteam.com/">id-ransomware</a></p>
+<p> <a target="_blank" rel="noopener" href="https://edr.sangfor.com.cn/#/information/ransom_search">深信服勒索病毒查找</a></p>
+<blockquote>
+<p>如果网站找不到，根据勒索信的格式，交付赎金网站的样式进行排查。</p>
+</blockquote>
+<h3 id="病毒解密工具集"><a href="#病毒解密工具集" class="headerlink" title="病毒解密工具集"></a>病毒解密工具集</h3><p><a target="_blank" rel="noopener" href="https://habo.qq.com/tool/detail/ransomware_recovery_tools">哈勃勒索病毒解密助手</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/jiansiting/Decryption-Tools">GitHub项目</a></p>
+<p><a target="_blank" rel="noopener" href="http://it.rising.com.cn/fanglesuo/index.html">瑞星防勒索专题社区</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.nomoreransom.org/zh/decryption-tools.html">nomoreransom解密工具</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.avast.com/zh-cn/ransomware-decryption-tools">Avast解密工具</a></p>
+<p><a target="_blank" rel="noopener" href="https://noransom.kaspersky.com/zh/">kaspersky卡巴斯基解密器</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.emsisoft.com/ransomware-decryption-tools/free-download">Emsisoft</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.trendmicro.com/zh_hk/forHome/products/free-tools.html">趋势科技</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.quickheal.com/free-ransomware-decryption-tool/">quickheal</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.avg.com/en-ww/ransomware-decryption-tools">AVG</a></p>
+<h2 id="确认勒索病毒传播方式"><a href="#确认勒索病毒传播方式" class="headerlink" title="确认勒索病毒传播方式"></a>确认勒索病毒传播方式</h2><p>如果上面能确认病毒类型，就去找这些病毒对应行为，样本特征（找样本是主要目标，一找到样本就能确定病毒攻击链）作为排查方向，但也不是100%的，有可能<strong>老毒用新洞</strong>。</p>
+<p>当全网都没有收录这个勒索病毒信息的时候，就去猜它的入侵途径：</p>
+<h3 id="暴力破解入侵"><a href="#暴力破解入侵" class="headerlink" title="暴力破解入侵"></a>暴力破解入侵</h3><p>查系统安全日志</p>
+<p><a href="https://dropann.github.io/p/75bed629.html">主机暴力破解日志特征</a></p>
+<h3 id="勒索病毒利用的常见漏洞"><a href="#勒索病毒利用的常见漏洞" class="headerlink" title="勒索病毒利用的常见漏洞"></a>勒索病毒利用的常见漏洞</h3><p>Win32k提权漏洞CVE-2018-8120</p>
+<p>WindowsALPC提权漏洞CVE-2018-8440</p>
+<p>Weblogic反序列化漏洞</p>
+<blockquote>
+<p>这里漏洞是列举不完的，我们当下应该关注被勒索服务器/主机实际业务做出合理推测，而且如果有老旧漏洞上面勒索病毒搜索引擎大概率是能找出来的，优先级上应该关注在野高危0day在勒索病毒上的应用。</p>
+</blockquote>
+<h3 id="供应链攻击"><a href="#供应链攻击" class="headerlink" title="供应链攻击"></a>供应链攻击</h3><p>挖坑</p>
+<h3 id="邮件附件"><a href="#邮件附件" class="headerlink" title="邮件附件"></a>邮件附件</h3><p>目前能想到的查邮件MD5放到威胁情报网站上去。</p>
+<p>挖坑</p>
+<h3 id="利用网页挂马传播"><a href="#利用网页挂马传播" class="headerlink" title="利用网页挂马传播"></a>利用网页挂马传播</h3><h3 id="找C2服务器"><a href="#找C2服务器" class="headerlink" title="找C2服务器"></a>找C2服务器</h3><p>看流量设备（NTA）查外联C2服务器。具体什么看挖坑</p>
+<blockquote>
+<p>需要注意的是：攻击者在对文件加密的过程中，可能不使用C2服务器，现在加密时可能不需要回传密钥。</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">DropAnn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dropann.github.io/p/c2567ef7.html">https://dropann.github.io/p/c2567ef7.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dropann.github.io" target="_blank">DropAnn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%97%85%E6%AF%92/">病毒</a></div><div class="post_share"><div class="social-share" data-image="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1098373.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/p/cc74cf72.html"><img class="next-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1080106.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux取证溯源</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">DropAnn</div><div class="author-info__description">在研发和安服仔之间徘徊</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">37</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DropAnn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DropAnn" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dropann@hotmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E5%A4%84%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">常规处置方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%BD%AE%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">错误处置：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E8%A2%AB%E6%84%9F%E6%9F%93%E4%B8%BB%E6%9C%BA-%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">隔离被感染主机&#x2F;服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A1%AE%E8%AE%A4%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E7%A7%8D%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text">确认勒索病毒种类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AE%E8%AE%A4%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E5%90%8D%E7%A7%B0%EF%BC%8C%E5%AE%B6%E6%97%8F%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E6%9C%89%E8%A7%A3%E5%AF%86%E7%9A%84%E5%8F%AF%E8%83%BD%E6%80%A7"><span class="toc-number">2.1.</span> <span class="toc-text">确认勒索病毒名称，家族查看是否有解密的可能性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%97%85%E6%AF%92%E6%9F%A5%E8%AF%A2%E7%BD%91%E7%AB%99"><span class="toc-number">2.1.1.</span> <span class="toc-text">病毒查询网站</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%97%85%E6%AF%92%E8%A7%A3%E5%AF%86%E5%B7%A5%E5%85%B7%E9%9B%86"><span class="toc-number">2.1.2.</span> <span class="toc-text">病毒解密工具集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A1%AE%E8%AE%A4%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E4%BC%A0%E6%92%AD%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">确认勒索病毒传播方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%85%A5%E4%BE%B5"><span class="toc-number">2.2.1.</span> <span class="toc-text">暴力破解入侵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8B%92%E7%B4%A2%E7%97%85%E6%AF%92%E5%88%A9%E7%94%A8%E7%9A%84%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E"><span class="toc-number">2.2.2.</span> <span class="toc-text">勒索病毒利用的常见漏洞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9B%E5%BA%94%E9%93%BE%E6%94%BB%E5%87%BB"><span class="toc-number">2.2.3.</span> <span class="toc-text">供应链攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%AE%E4%BB%B6%E9%99%84%E4%BB%B6"><span class="toc-number">2.2.4.</span> <span class="toc-text">邮件附件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E7%BD%91%E9%A1%B5%E6%8C%82%E9%A9%AC%E4%BC%A0%E6%92%AD"><span class="toc-number">2.2.5.</span> <span class="toc-text">利用网页挂马传播</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%BEC2%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.2.6.</span> <span class="toc-text">找C2服务器</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/c2567ef7.html" title="勒索病毒应急处置">勒索病毒应急处置</a><time datetime="2021-11-18T05:57:29.000Z" title="发表于 2021-11-18 13:57:29">2021-11-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/cc74cf72.html" title="Linux取证溯源">Linux取证溯源</a><time datetime="2021-10-20T09:53:57.000Z" title="发表于 2021-10-20 17:53:57">2021-10-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/b47778f4.html" title="HELK">HELK</a><time datetime="2021-10-12T09:31:52.000Z" title="发表于 2021-10-12 17:31:52">2021-10-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/1ddb4f36.html" title="docker初始化">docker初始化</a><time datetime="2021-10-10T15:11:55.000Z" title="发表于 2021-10-10 23:11:55">2021-10-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/603ea0ad.html" title="DVWA初始化">DVWA初始化</a><time datetime="2021-10-10T09:31:33.000Z" title="发表于 2021-10-10 17:31:33">2021-10-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By DropAnn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?dropann";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="dropann";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
